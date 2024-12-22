@@ -57,16 +57,19 @@ void SysSleep(uint32_t ms);
 //APB1 PERIPHERALS BASE ADDRESS
 #define APB1PERIPH_BASEADDR				0x40000000U
 
-//TIM2-7,12-14 REGISTER
+//TIM2-7 REGISTER
 #define TIM2_BASEADDR					0x40000000U
 #define TIM3_BASEADDR					0x40000400U
 #define TIM4_BASEADDR					0x40000800U
 #define TIM5_BASEADDR					0x40000C00U
 #define TIM6_BASEADDR					0x40001000U
 #define TIM7_BASEADDR					0x40001400U
-#define TIM12_BASEADDR					0x40001800U
-#define TIM13_BASEADDR					0x40001C00U
-#define TIM14_BASEADDR					0x40002000U
+
+//CRS REGISTER
+#define CRS_BASEADDR					0x40002000U
+
+//TAMP REGISTER
+#define TAMP_BASEADDR					0x40002400U
 
 //RTC BACKUP REGISTER
 #define RTCBKP_BASEADDR					0x40002800U
@@ -75,11 +78,9 @@ void SysSleep(uint32_t ms);
 #define WWDG_BASEADDR					0x40002C00U
 #define IWDG_BASEADDR					0x40003000U
 
-//SPI and I2S REGISTER
-#define I2S2ext_BASEADDR				0x40003400U
+//SPI2,3 and I2S REGISTER
 #define SPI2_BASEADDR					0x40003800U
 #define SPI3_BASEADDR					0x40003C00U
-#define I2S3ext_BASEADDR				0x40004000U
 
 //USART2,3 and UART4,5 REGISTER
 #define USART2_BASEADDR					0x40004400U
@@ -87,25 +88,39 @@ void SysSleep(uint32_t ms);
 #define UART4_BASEADDR					0x40004C00U
 #define UART5_BASEADDR					0x40005000U
 
-//I2C1-3 REGISTER
+//I2C1-2 REGISTER
 #define I2C1_BASEADDR					0x40005400U
 #define I2C2_BASEADDR					0x40005800U
-#define I2C3_BASEADDR					0x40005C00U
 
-//CAN1-2 REGISTER
-#define CAN1_BASEADDR					0x40006400U
-#define CAN2_BASEADDR					0x40006800U
+//USB Device FS REGISTER
+#define USB_DEVICE_FS_BASEADDR			0x40005C00U
+#define USB_SRAM_1KBYTE_BASEADDR		0x40006000U
+
+//FDCAN1-2-3 REGISTER
+#define FDCAN1_BASEADDR					0x40006400U
+#define FDCAN2_BASEADDR					0x40006800U
+#define FDCAN3_BASEADDR					0x40006C00U
 
 //PWR REGISTER
 #define PWR_BASEADDR					0x40007000U
 
-//DAC REGISTER
-#define DAC_BASEADDR					0x40007400U
+//I2C3 REGISTER
+#define I2C3_BASEADDR					0x40007800U
 
-//UART7,8 REGISTER
-#define UART7_BASEADDR					0x40007800U
-#define UART8_BASEADDR					0x40007C00U
+//LPTIM1 REGISTER
+#define LPTIM1_BASEADDR					0x40007C00U
 
+//LPUART1 REGISTER
+#define LPUART1_BASEADDR				0x40008000U
+
+//I2C4 REGISTER
+#define I2C4_BASEADDR					0x40008400U
+
+//UCPD1 REGISTER
+#define UCPD1_BASEADDR					0x4000A000U
+
+//FDCANs MESSAGE REGISTER
+#define FDCAN_BASEADDR					0x4000A400U
 
 /*
  *  Base addresses of peripherals that is connected to APB2 Bus
@@ -114,48 +129,49 @@ void SysSleep(uint32_t ms);
 //BASE ADDRESS
 #define APB2PERIPH_BASEADDR				0x40010000U
 
-//TIM1,8 REGISTER
-#define TIM1_BASEADDR					0x40010000U
-#define TIM8_BASEADDR					0x40010400U
+//SYSCFG REGISTER
+#define SYSCFG_BASEADDR					0x40010000U
 
-//USART1,6 REGISTER
-#define USART1_BASEADDR					0x40011000U
-#define USART6_BASEADDR					0x40011400U
+//VREFBUF REGISTER
+#define VREFBUF_BASEADDR				0x40010030U
 
-//ADC1,2,3 REGISTER
-#define ADC1_BASEADDR					0x40012000U
-#define ADC2_BASEADDR					0x40012100U
-#define ADC3_BASEADDR					0x40012200U
+//COMP REGISTER
+#define COMP_BASEADDR					0x40010200U
 
-//SDIO REGISTER
-#define SDIO_BASEADDR					0x40012C00U
+//OPAMP REGISTER
+#define	OPAMP_BASEADDR					0x40010300U
+
+//EXTI REGISTER
+#define EXTI_BASEADDR					0x40010400U
+
+//TIM1 REGISTER
+#define TIM1_BASEADDR					0x40012C00U
 
 //SPI1,4 REGISTER
 #define SPI1_BASEADDR					0x40013000U
-#define SPI2_BASEADDR					0x40003800U
-#define SPI3_BASEADDR					0x40003C00U
-#define SPI4_BASEADDR					0x40013400U
 
-//SYSCONFIG REGISTER
-#define SYSCONFIG_BASEADDR				0x40013800U
+//TIM8 REGISTER
+#define TIM8_BASEADDR					0x40013400U
 
-//EXTI REGISTER
-#define EXTI_BASEADDR					0x40013C00U
+//USART1 REGISTER
+#define USART1_BASEADDR					0x40013800U
 
-//TIM9,10,11 REGISTER
-#define TIM9_BASEADDR					0x40014000U
-#define TIM10_BASEADDR					0x40014400U
-#define TIM11_BASEADDR					0x40014800U
+//SPI4 REGISTER
+#define SPI4_BASEADDR					0x40013C00U
 
-//SPI5,6 REGISTER
-#define SPI5_BASEADDR					0x40015000U
-#define SPI6_BASEADDR					0x40015400U
+//TIM15,17 REGISTER
+#define TIM15_BASEADDR					0x40014000U
+#define TIM16_BASEADDR					0x40014400U
+#define TIM17_BASEADDR					0x40014800U
 
-//SAI REGISTER
-#define SAI_BASEADDR					0x40015800U
+//TIM20 REGISTER
+#define TIM20_BASEADDR					0x40015000U
 
-//LCD-TFT REGISTER
-#define LCDTFT_BASEADDR					0x40016800U
+//SAI1 REGISTER
+#define SAI1_BASEADDR					0x40015400U
+
+//HRTIM REGISTER
+#define HRTIM_BASEADDR					0x40016800U
 
 /*
  *  Base addresses of peripherals that is connected to AHB1 Bus
@@ -164,34 +180,74 @@ void SysSleep(uint32_t ms);
 //BASE ADDRESS
 #define AHB1PERIPH_BASEADDR				0x40020000U
 
-//GPIOA-K REGISTER
-#define GPIOA_BASEADDR					(AHB1PERIPH_BASEADDR + 0x0000U)
+//DMA1,2 REGISTER
+#define DMA1_BASEADDR					0x40020000U
+#define DMA2_BASEADDR					0x40020400U
+
+//DMAMUX REGISTER
+#define DMAMUX_BASEADDR					0x40020800U
+
+//CORDIC REGISTER
+#define	CORDIC_BASEADDR					0x40020C00U
+
+//RCC REGISTER
+#define RCC_BASEADDR					0x40021000U
+
+//FMAC REGISTER
+#define FMAC_BASEADDR					0x40021400U
+
+//FLASH INTERFACE REGISTER
+#define FLASH_INTERFACE_BASEADDR		0x40022000U
+
+//CRC REGISTER
+#define CRC_BASEADDR					0x40023000U
+
+/*
+ *  Base addresses of peripherals that is connected to AHB2 Bus
+ */
+//BASE ADDRESS
+#define AHB2PERIPH_BASEADDR				0x48000000U
+
+//GPIOA-G REGISTER
+#define GPIOA_BASEADDR					(AHB2PERIPH_BASEADDR + 0x0000U)
 #define GPIOB_BASEADDR					(GPIOA_BASEADDR + 0x0400U)
 #define GPIOC_BASEADDR					(GPIOB_BASEADDR + 0x0800U)
 #define GPIOD_BASEADDR					(GPIOC_BASEADDR + 0x0C00U)
 #define GPIOE_BASEADDR					(GPIOD_BASEADDR + 0x1000U)
 #define GPIOF_BASEADDR					(GPIOE_BASEADDR + 0x1400U)
 #define GPIOG_BASEADDR					(GPIOF_BASEADDR + 0x1800U)
-#define GPIOH_BASEADDR					(GPIOG_BASEADDR + 0x1C00U)
-#define GPIOI_BASEADDR					(GPIOH_BASEADDR + 0x2000U)
-#define GPIOJ_BASEADDR					(GPIOI_BASEADDR + 0x2400U)
-#define GPIOK_BASEADDR					(GPIOJ_BASEADDR + 0x2800U)
 
-//CRC REGISTER
-#define CRC_BASEADDR					0x40023000U
+//ADC1-ADC2 REGISTER
+#define ADC1_ADC2_BASEADDR				0x50000000U
 
-//RCC REGISTER
-#define RCC_BASEADDR 					0x40023800U
+//ADC3-ADC4-ADC5 REGISTER
+#define ADC3_ADC4_ADC5_BASEADDR			0x50000400U
 
-//FLASH INTERFACE REGISTER
-#define FLASH_BASEADDR					0x40023C00U
+//DAC1 REGISTER
+#define DAC1_BASEADDR					0x50000800U
+
+//DAC2 REGISTER
+#define DAC2_BASEADDR					0x50000C00U
+
+//DAC3 REGISTER
+#define DAC3_BASEADDR					0x50001000U
+
+//DAC4 REGISTER
+#define DAC4_BASEADDR					0x50001400U
+
+//AES REGISTER
+#define AES_BASEADDR					0x50060000U
+
+//RNG REGISTER
+#define RNG_BASEADDR					0x50060800U
+
+
+#define ADC2_BASEADDR					0x40012100U
+#define ADC3_BASEADDR					0x40012200U
 
 //BKPSRAM REGISTER
 #define BKPSRAM_BASEADDR				0x40024000U
 
-//DMA1,2 REGISTER
-#define DMA1_BASEADDR					0x40026000U
-#define DMA2_BASEADDR					0x40026400U
 
 //ETHERNET MAC REGISTER
 #define ETHERNETMAC_BASEADDR			0x40028000U
@@ -225,11 +281,17 @@ void SysSleep(uint32_t ms);
 #define RNG_BASEADDR					0x50060800U
 
 /*
- *  Base addresses of peripherals that is connected to AHB3 Bus
+ *  Base addresses of peripherals that is connected to No Bus
  */
 
 //BASE ADDRESS
-#define AHB3PERIPH_BASEADDR				0xA0000000U
+#define NOBUS_BASEADDR				0xA0000000U
+
+//FSMC REGISTER
+#define FSMC_BASEADDR				0xA0000400U
+
+//QUADSPI REGISTER
+#define QUADSPI_BASEADDR			0xA0001000U
 
 /******************************************TYPDEFs FOR REGISTERS***********************************************/
 
@@ -258,65 +320,416 @@ typedef struct
  * Reset and Clock Control (RCC) register typedefs.
  */
 
-//RCC clock control register (RCC_CR)
+/*
+*	RCC clock control register (RCC_CR)
+*	Address offset: 0x00
+*	Reset value: 0x0000 0500
+*	HSEBYP is not affected by reset.
+*	Access: no wait state, word, half-word and byte access
+*/
 typedef struct
 {
-
-	volatile uint32_t HSION:1;
-	volatile uint32_t HSIRDY:1;
-	uint32_t reserved0:1;
-	volatile uint32_t HSITRM:5;
-	volatile uint32_t HSICAL:8;
-	volatile uint32_t HSEON:1;
-	volatile uint32_t HSERDY:1;
-	volatile uint32_t HSEBYP:1;
-	volatile uint32_t CSSON:1;
-	uint32_t reserved1:4;
+	/*
+	*	Reserved, must be kept at reset value.
+	*/
+	uint32_t reserved : 8;
+	/*
+	*	HSI16 clock enable
+	*	Set and cleared by software.
+	*	Cleared by hardware to stop the HSI16 oscillator when entering Stop, Standby or Shutdown
+	*	mode.
+	*	Set by hardware to force the HSI16 oscillator ON when STOPWUCK=1 or HSIASFS = 1
+	*	when leaving Stop modes, or in case of failure of the HSE crystal oscillator.
+	*	This bit is set by hardware if the HSI16 is used directly or indirectly as system clock.
+	*	0: HSI16 oscillator OFF
+	*	1: HSI16 oscillator ON
+	*/
+	volatile uint32_t HSION : 1;
+	/*
+	*	HSI16 always enable for peripheral kernels.
+	*	Set and cleared by software to force HSI16 ON even in Stop modes. The HSI16 can only
+	*	feed USARTs and I2Cs peripherals configured with HSI16 as kernel clock. Keeping the
+	*	HSI16 ON in Stop mode allows to avoid slowing down the communication speed because of
+	*	the HSI16 startup time. This bit has no effect on HSION value.
+	*	0: No effect on HSI16 oscillator.
+	*	1: HSI16 oscillator is forced ON even in Stop mode
+	*/
+	volatile uint32_t HSIKERON : 1;
+	/*
+	*	HSI16 clock ready flag
+	*	Set by hardware to indicate that HSI16 oscillator is stable. This bit is set only when HSI16 is
+	*	enabled by software by setting HSION.
+	*	0: HSI16 oscillator not ready
+	*	1: HSI16 oscillator ready
+	*	Note: Once the HSION bit is cleared, HSIRDY goes low after 6 HSI16 clock cycles.
+	*/
+	volatile uint32_t HSIRDY : 1;
+	/*
+	*	Reserved, must be kept at reset value.
+	*/
+	uint32_t reserved0 : 5;
+	/*
+	*	HSE clock enable
+	*	Set and cleared by software.
+	*	Cleared by hardware to stop the HSE oscillator when entering Stop, Standby or Shutdown
+	*	mode. This bit cannot be reset if the HSE oscillator is used directly or indirectly as the system
+	*	clock.
+	*	0: HSE oscillator OFF
+	*	1: HSE oscillator ON
+	*/
+	volatile uint32_t HSEON : 1;
+	/*
+	*	HSE clock ready flag
+	*	Set by hardware to indicate that the HSE oscillator is stable.
+	*	0: HSE oscillator not ready
+	*	1: HSE oscillator ready
+	*	Note: Once the HSEON bit is cleared, HSERDY goes low after 6 HSE clock cycles.
+	*/
+	volatile uint32_t HSERDY : 1;
+	/*
+	*	HSE crystal oscillator bypass
+	*	Set and cleared by software to bypass the oscillator with an external clock. The external
+	*	clock must be enabled with the HSEON bit set, to be used by the device. The HSEBYP bit
+	*	can be written only if the HSE oscillator is disabled.
+	*	0: HSE crystal oscillator not bypassed
+	*	1: HSE crystal oscillator bypassed with external clock
+	*/
+	volatile uint32_t HSEBYP : 1;
+	/*
+	*	Clock security system enable
+	*	Set by software to enable the clock security system. When CSSON is set, the clock detector
+	*	is enabled by hardware when the HSE oscillator is ready, and disabled by hardware if a HSE
+	*	clock failure is detected. This bit is set only and is cleared by reset.
+	*	0: Clock security system OFF (clock detector OFF)
+	*	1: Clock security system ON (Clock detector ON if the HSE oscillator is stable, OFF if not).
+	*/
+	volatile uint32_t CSSON : 1;
+	/*
+	*	Reserved, must be kept at reset value.
+	*/	
+	uint32_t reserved1 : 4;
+	/*
+	*	Main PLL enable
+	*	Set and cleared by software to enable the main PLL.
+	*	Cleared by hardware when entering Stop, Standby or Shutdown mode. This bit cannot be
+	*	reset if the PLL clock is used as the system clock.
+	*	0: PLL OFF
+	*	1: PLL ON
+	*/
 	volatile uint32_t PLLON:1;
+	/*
+	*	Main PLL clock ready flag
+	*	Set by hardware to indicate that the main PLL is locked.
+	*	0: PLL unlocked
+	*	1: PLL locked
+	*/
 	volatile uint32_t PLLRDY:1;
-	volatile uint32_t PLLI2SON:1;
-	volatile uint32_t PLLI2SRDY:1;
-	volatile uint32_t PLLSAION:1;
-	volatile uint32_t PLLSAIRDY:1;
-	uint32_t reserved2:2;
-
+	/*
+	*	Reserved, must be kept at reset value.
+	*/	
+	uint32_t reserved2:6;
 }RCC_CR_t;
 
-//RCC PLL configuration register (RCC_PLLCFGR)
+/*
+*	Internal clock sources calibration register (RCC_ICSCR)
+*	Address offset: 0x04
+*	Reset value: 0x40XX 00XX
+*	where X is factory-programmed.
+*	Access: no wait state, word, half-word and byte access
+*/
+typedef struct 
+{
+	/*
+	*	Bits 15:0 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved : 16;
+	/*
+	*	Bits 23:16 HSICAL[7:0]: HSI16 clock calibration
+	*	These bits are initialized at startup with the factory-programmed HSI16 calibration trim value.
+	*	When HSITRIM is written, HSICAL is updated with the sum of HSITRIM and the factory trim
+	*	value
+	*/
+	volatile uint32_t HSICAL : 8;
+	/*
+	*	Bits 30:24 HSITRIM[6:0]: HSI16 clock trimming
+	*	These bits provide an additional user-programmable trimming value that is added to the
+	*	HSICAL[7:0] bits. It can be programmed to adjust to variations in voltage and temperature
+	*	that influence the frequency of the HSI16.
+	*	The default value is 64, which, when added to the HSICAL value, trims HSI16 to
+	*	16 MHz ± 1 %. 
+	*/
+	volatile uint32_t HSITRIM : 7;
+	/*
+	*	Bit 31 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 1;
+}RCC_ICSCR_t;
+
+/*
+*	Clock configuration register (RCC_CFGR)
+*	Address offset: 0x08
+*	Reset value: 0x0000 0005
+*	Access: 0 ≤ wait state ≤ 2, word, half-word and byte access
+*	1 or 2 wait states inserted only if the access occurs during clock source switch.
+*	From 0 to 15 wait states inserted if the access occurs when the APB or AHB prescalers
+*	values update is on going.
+*/
 typedef struct
 {
-
-	volatile uint32_t PLLM:6;
-	volatile uint32_t PLLN:9;
-	uint32_t reserved0:1;
-	volatile uint32_t PLLP:2;
-	uint32_t reserved1:4;
-	volatile uint32_t PLLSRC:1;
-	uint32_t reserved2:1;
-	volatile uint32_t PLLQ:4;
-	uint32_t reserved3:4;
-
-}RCC_PLLCFGR_t;
-
-//RCC clock configuration register (RCC_CFGR)
-typedef struct
-{
-
-	volatile uint32_t SW:2;
-	volatile uint32_t SWS:2;
-	volatile uint32_t HPRE:4;
-	uint32_t reserved0:2;
-	volatile uint32_t PPRE1:3;
-	volatile uint32_t PPRE2:3;
-	volatile uint32_t RTCPRE:5;
-	volatile uint32_t MCO1:2;
-	volatile uint32_t I2SSCR:1;
-	volatile uint32_t MCO1PRE:3;
-	volatile uint32_t MCO2PRE:3;
-	volatile uint32_t MCO2:2;
-
+	/*
+	*	Bits 1:0 SW[1:0]: System clock switch
+	*	Set and cleared by software to select system clock source (SYSCLK).
+	*	Configured by hardware to force HSI16 oscillator selection when exiting Stop and Standby
+	*	modes or in case of failure of the HSE oscillator.
+	*	00: Reserved, must be kept at reset value
+	*	01: HSI16 selected as system clock
+	*	10: HSE selected as system clock
+	*	11: PLL selected as system clock
+	*/
+	volatile uint32_t SW : 2;
+	/*
+	*	Bits 3:2 SWS[1:0]: System clock switch status
+	*	Set and cleared by hardware to indicate which clock source is used as system clock.
+	*	00: Reserved, must be kept at reset value
+	*	01: HSI16 oscillator used as system clock
+	*	10: HSE used as system clock
+	*	11: PLL used as system clock
+	*/
+	volatile uint32_t SWS : 2;
+	/*
+	*	Bits 7:4 HPRE[3:0]: AHB prescaler
+	*	Set and cleared by software to control the division factor of the AHB clock.
+	*	Caution: Depending on the device voltage range, the software must set correctly
+	*	these bits to ensure that the system frequency does not exceed the
+	*	maximum allowed frequency (for more details refer to Section 6.1.5:
+	*	Dynamic voltage scaling management). After a write operation to these
+	*	bits and before decreasing the voltage range, this register must be read
+	*	to be sure that the new value has been taken into account.
+	*	0xxx: SYSCLK not divided
+	*	1000: SYSCLK divided by 2
+	*	1001: SYSCLK divided by 4
+	*	1010: SYSCLK divided by 8
+	*	1011: SYSCLK divided by 16
+	*	1100: SYSCLK divided by 64
+	*	1101: SYSCLK divided by 128
+	*	1110: SYSCLK divided by 256
+	*	1111: SYSCLK divided by 512
+	*/
+	volatile uint32_t HPRE : 4;
+	/*
+	*	Bits 10:8 PPRE1[2:0]:APB1 prescaler
+	*	Set and cleared by software to control the division factor of the APB1 clock (PCLK1).
+	*	0xx: HCLK not divided
+	*	100: HCLK divided by 2
+	*	101: HCLK divided by 4
+	*	110: HCLK divided by 8
+	*	111: HCLK divided by 16
+	*/
+	volatile uint32_t PPRE1 : 3;
+	/*
+	*	Bits 13:11 PPRE2[2:0]: APB2 prescaler
+	*	Set and cleared by software to control the division factor of the APB2 clock (PCLK2).
+	*	0xx: HCLK not divided
+	*	100: HCLK divided by 2
+	*	101: HCLK divided by 4
+	*	110: HCLK divided by 8
+	*	111: HCLK divided by 16
+	*/
+	volatile uint32_t PPRE2 : 3;
+	/*
+	*	Bits 23:14 Reserved, must be kept at reset value
+	*/
+	uint32_t reserved : 10;
+	/*
+	*	Bits 27:24 MCOSEL[3:0]: Microcontroller clock output
+	*	Set and cleared by software.
+	*	0000: MCO output disabled, no clock on MCO
+	*	0001: SYSCLK system clock selected
+	*	0010: Reserved, must be kept at reset value
+	*	0011: HSI16 clock selected
+	*	0100: HSE clock selected
+	*	0101: Main PLL clock selected
+	*	0110: LSI clock selected
+	*	0111: LSE clock selected
+	*	1000: Internal HSI48 clock selected
+	*	Others: Reserved
+	*	Note: This clock output may have some truncated cycles at startup or during MCO clock
+	*	source switching.
+	*/
+	volatile uint32_t MCOSEL : 4;
+	/*
+	*	Bits 30:28 MCOPRE[2:0]: Microcontroller clock output prescaler
+	*	These bits are set and cleared by software.
+	*	It is highly recommended to change this prescaler before MCO output is enabled.
+	*	000: MCO is divided by 1
+	*	001: MCO is divided by 2
+	*	010: MCO is divided by 4
+	*	011: MCO is divided by 8
+	*	100: MCO is divided by 16
+	*	Others: not allowed
+	*/
+	volatile uint32_t MCOPRE : 3;
+	/*
+	*	Bit 31 Reserved, must be kept at reset value.
+	*/
+	uint32_t reserved0 : 1;
 }RCC_CFGR_t;
 
+/*
+*	PLL configuration register (RCC_PLLCFGR)
+*	Address offset: 0x0C
+*	Reset value: 0x0000 1000
+*	Access: no wait state, word, half-word and byte access
+*	This register is used to configure the PLL clock outputs according to the formulas:
+*	• f(VCO clock) = f(PLL clock input) × (PLLN / PLLM)
+*	• f(PLL_P) = f(VCO clock) / PLLP
+*	• f(PLL_Q) = f(VCO clock) / PLLQ
+*	• f(PLL_R) = f(VCO clock) / PLLR
+*/
+typedef struct
+{
+	/*
+	*	Bits 1:0 PLLSRC[1:0]: Main PLL entry clock source
+	*	Set and c.leared by software to select PLL clock source. These bits can be written only when
+	*	PLL is disabled.
+	*	In order to save power, when no PLL is used, the value of PLLSRC should be 00.
+	*	00: No clock sent to PLL
+	*	01: No clock sent to PLL
+	*	10: HSI16 clock selected as PLL clock entry
+	*	11: HSE clock selected as PLL clock entry
+	*/
+	volatile uint32_t PLLSRC : 2;
+	/*
+	*	Bits 3:2 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved : 2;
+	/*
+	*	Bits 7:4 PLLM[3:0]: Division factor for the main PLL input clock
+	*	Set and cleared by software to divide the PLL input clock before the VCO. These bits can be
+	*	written only when all PLLs are disabled.
+	*	VCO input frequency = PLL input clock frequency / PLLM with 1 ≤ PLLM ≤ 16
+	*	0000: PLLM = 1
+	*	0001: PLLM = 2
+	*	0010: PLLM = 3
+	*	0011: PLLM = 4
+	*	0100: PLLM = 5
+	*	0101: PLLM = 6
+	*	0110: PLLM = 7
+	*	0111: PLLM = 8
+	*	1000: PLLSYSM = 9
+	*	...
+	*	1111: PLLSYSM= 16
+	*	Caution: The software must set these bits correctly to ensure that the VCO input
+	*	frequency is within the range defined in the datasheet.
+	*/
+	volatile uint32_t PLLM : 4;
+	/*
+	*	Bits 14:8 PLLN[6:0]: Main PLL multiplication factor for VCO
+	*	Set and cleared by software to control the multiplication factor of the VCO. These bits can be
+	*	written only when the PLL is disabled.
+	*	VCO output frequency = VCO input frequency x PLLN with 8 =< PLLN =< 127
+	*	0000000: PLLN = 0 wrong configuration
+	*	0000001: PLLN = 1 wrong configuration
+	*	...
+	*	0000111: PLLN = 7 wrong configuration
+	*	0001000: PLLN = 8
+	*	0001001: PLLN = 9
+	*	...
+	*	1111111: PLLN = 127
+	*	Caution: The software must set correctly these bits to assure that the VCO output
+	*	frequency is within the range defined in the datasheet.
+	*/
+	volatile uint32_t PLLN : 7;
+	/*
+	*	Bit 15 Reserved, must be kept at reset value.
+	*/
+	uint32_t reserved0 : 1;
+	/*
+	*	Bit 16 PLLPEN: Main PLL PLL “P” clock output enable
+	*	Set and reset by software to enable the PLL “P” clock output of the PLL.
+	*	To save power, when the PLL “P” clock output of the PLL is not used, the value of PLLPEN
+	*	should be 0.
+	*	0: PLL “P” clock output disabled
+	*	1: PLL “P” clock output enabled
+	*/
+	volatile uint32_t PLLPEN : 1;
+	/*
+	*	Bit 17 PLLP: Main PLL division factor for PLL “P” clock.
+	*	Set and cleared by software to control the frequency of the main PLL output clock PLL “P”
+	*	clock. These bits can be written only if PLL is disabled.
+	*	When the PLLPDIV[4:0] is set to “00000”PLL “P” output clock frequency = VCO frequency /
+	*	PLLP with PLLP =7, or 17
+	*	0: PLLP = 7
+	*	1: PLLP = 17
+	*	Caution: These bits must be set so as not to exceed 170 MHz on this domain.
+	*/
+	volatile uint32_t PLLP : 1;
+	/*
+	*	Bits 19:18 Reserved, must be kept at reset value.
+	*/
+	uint32_t reserved1 : 2;
+	/*
+	*	Bit 20 PLLQEN: Main PLL “Q” clock output enable
+	*	Set and reset by software to enable the PLL “Q” clock output of the PLL.
+	*	In order to save power, when the PLL “Q” clock output of the PLL is not used, the value of
+	*	PLLQEN should be 0.
+	*	0: PLL “Q” clock output disabled
+	*	1: PLL “Q” clock output enabled
+	*/
+	volatile uint32_t PLLQEN : 1;
+	/*
+	*	Bits 22:21 PLLQ[1:0]: Main PLL division factor for PLL “Q” clock.
+	*	Set and cleared by software to control the frequency of the main PLL output clock PLL “Q”
+	*	clock. This output can be selected for USB, RNG, SAI (48 MHz clock). These bits can be
+	*	written only if PLL is disabled.
+	*	PLL “Q” output clock frequency = VCO frequency / PLLQ with PLLQ = 2, 4, 6, or 8
+	*	00: PLLQ = 2
+	*	01: PLLQ = 4
+	*	10: PLLQ = 6
+	*	11: PLLQ = 8
+	*	Caution: These bits must be set so as not to exceed 170 MHz on this domain
+	*/
+	volatile uint32_t PLLQ : 2;
+	/*
+	*	Bit 23 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved2 : 1;
+	/*
+	*	Bit 24 PLLREN: PLL “R” clock output enable
+	*	Set and reset by software to enable the PLL “R” clock output of the PLL (used as system
+	*	clock).
+	*	This bit cannot be written when PLL “R” clock output of the PLL is used as System Clock.
+	*	In order to save power, when the PLL “R” clock output of the PLL is not used, the value of
+	*	PLLREN should be 0.
+	*	0: PLL “R” clock output disabled
+	*	1: PLL “R” clock output enabled
+	*/
+	volatile uint32_t PLLREN : 1;
+	/*
+	*	Bits 26:25 PLLR[1:0]: Main PLL division factor for PLL “R” clock (system clock)
+	*	Set and cleared by software to control the frequency of the main PLL output clock PLLCLK.
+	*	This output can be selected as system clock. These bits can be written only if PLL is
+	*	disabled.
+	*	PLL “R” output clock frequency = VCO frequency / PLLR with PLLR = 2, 4, 6, or 8
+	*	00: PLLR = 2
+	*	01: PLLR = 4
+	*	10: PLLR = 6
+	*	11: PLLR = 8
+	*	Caution: These bits must be set so as not to exceed 170 MHz on this domain.
+	*/
+	volatile uint32_t PLLREN : 2;
+	/*
+	*	Bits 31:27 PLLPDIV[4:0]: Main PLLP division factor
+	*	Set and cleared by software to control the PLL “P” frequency. PLL “P” output clock frequency
+	*	= VCO frequency / PLLPDIV.
+	*	00000: PLL “P” clock is controlled by the bit PLLP
+	*	00001: Reserved.
+	*	00010: PLL “P” clock = VCO / 2
+	*	....
+	*	11111: PLL “P” clock = VCO / 31
+	*/
+	volatile uint32_t PLLPDIV : 5;
+}RCC_PLLCFGR_t;
 
 //RCC clock interrupt register (RCC_CIR)
 typedef struct
