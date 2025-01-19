@@ -1,8 +1,8 @@
 /*
- * STM32F4xx.h
+ * STM32G4xx.h
  *
- *  Created on: Jun 30, 2022
- *      Author: efakb
+ *  Created on: Jun 18, 2025
+ *      Author: Sezgin Sinan Akbayın
  */
 
 #pragma once
@@ -731,129 +731,693 @@ typedef struct
 	volatile uint32_t PLLPDIV : 5;
 }RCC_PLLCFGR_t;
 
-//RCC clock interrupt register (RCC_CIR)
+/*
+*	Clock interrupt enable register (RCC_CIER)
+*	Address offset: 0x18
+*	Reset value: 0x0000 0000
+*	Access: no wait state, word, half-word and byte access
+*/
 typedef struct
 {
+	/*
+	*	Bit 0 LSIRDYIE: LSI ready interrupt enable
+	*	Set and cleared by software to enable/disable interrupt caused by the LSI oscillator
+	*	stabilization.
+	*	0: LSI ready interrupt disabled
+	*	1: LSI ready interrupt enabled
+	*/
+	volatile uint32_t LSIRDYIE : 1;
+	/*
+	*	Bit 2 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 1;
+	/*
+	*	Bit 3 HSIRDYIE: HSI16 ready interrupt enable
+	*	Set and cleared by software to enable/disable interrupt caused by the HSI16 oscillator
+	*	stabilization.
+	*	0: HSI16 ready interrupt disabled
+	*	1: HSI16 ready interrupt enabled
+	*/
+	volatile uint32_t HSIRDYIE : 1;
+	/*
+	*	Bit 4 HSERDYIE: HSE ready interrupt enable
+	*	Set and cleared by software to enable/disable interrupt caused by the HSE oscillator
+	*	stabilization.
+	*	0: HSE ready interrupt disabled
+	*	1: HSE ready interrupt enabled
+	*/
+	volatile uint32_t HSERDYIE : 1;
+	/*
+	*	Bit 5 PLLRDYIE: PLL ready interrupt enable
+	*	Set and cleared by software to enable/disable interrupt caused by PLL lock.
+	*	0: PLL lock interrupt disabled
+	*	1: PLL lock interrupt enabled
+	*/
+	volatile uint32_t PLLRDYIE : 1;
+	/*
+	*	Bits 8:6 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 3;
+	/*
+	*	Bit 9 LSECSSIE: LSE clock security system interrupt enable
+	*	Set and cleared by software to enable/disable interrupt caused by the clock security system
+	*	on LSE.
+	*	0: Clock security interrupt caused by LSE clock failure disabled
+	*	1: Clock security interrupt caused by LSE clock failure enabled
+	*/
+	volatile uint32_t LSECSSIE : 1;
+	/*
+	*	Bit 10 HSI48RDYIE: HSI48 ready interrupt enable
+	*	Set and cleared by software to enable/disable interrupt caused by the internal HSI48
+	*	oscillator.
+	*	0: HSI48 ready interrupt disabled
+	*	1: HSI48 ready interrupt enabled
+	*/
+	volatile uint32_t HSI48RDYIE : 1;
+	/*
+	*	Bits 31:11 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved2 : 21;
+}RCC_CIER_t;
 
-	volatile uint32_t LSIRDYF:1;
-	volatile uint32_t LSERDYF:1;
-	volatile uint32_t HSIRDYF:1;
-	volatile uint32_t HSERDYF:1;
+/*
+*	Clock interrupt flag register (RCC_CIFR)
+*	Address offset: 0x1C
+*	Reset value: 0x0000 0000
+*	Access: no wait state, word, half-word and byte access
+*/
+typedef struct
+{
+	/*
+	*	Bit 0 LSIRDYF: LSI ready interrupt flag
+	*	Set by hardware when the LSI clock becomes stable and LSIRDYDIE is set.
+	*	Cleared by software setting the LSIRDYC bit.
+	*	0: No clock ready interrupt caused by the LSI oscillator
+	*	1: Clock ready interrupt caused by the LSI oscillator
+	*/
+	volatile uint32_t LSIRDYF : 1;
+	/*
+	*	Bit 1 LSERDYF: LSE ready interrupt flag
+	*	Set by hardware when the LSE clock becomes stable and LSERDYDIE is set.
+	*	Cleared by software setting the LSERDYC bit.
+	*	0: No clock ready interrupt caused by the LSE oscillator
+	*	1: Clock ready interrupt caused by the LSE oscillator
+	*/
+	volatile uint32_t LSERDYF : 1;
+	/*
+	*	Bit 2 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 1;
+	/*
+	*	Bit 3 HSIRDYF: HSI16 ready interrupt flag
+	*	Set by hardware when the HSI16 clock becomes stable and HSIRDYDIE is set in a
+	*	response to setting the HSION. When HSION is not set but the HSI16 oscillator 
+	*	is enabled by the peripheral through a clock request, this bit
+	*	is not set and no interrupt is generated.
+	*	Cleared by software setting the HSIRDYC bit.
+	*	0: No clock ready interrupt caused by the HSI16 oscillator
+	*	1: Clock ready interrupt caused by the HSI16 oscillator
+	*/
+	volatile uint32_t HSIRDYF : 1;
+	/*
+	*	Bit 4 HSERDYF: HSE ready interrupt flag
+	*	Set by hardware when the HSE clock becomes stable and HSERDYDIE is set.
+	*	Cleared by software setting the HSERDYC bit.
+	*	0: No clock ready interrupt caused by the HSE oscillator
+	*	1: Clock ready interrupt caused by the HSE oscillator
+	*/
+	volatile uint32_t HSERDYF : 1;
+	/*
+	*	Bit 5 PLLRDYF: PLL ready interrupt flag
+	*	Set by hardware when the PLL locks and PLLRDYDIE is set.
+	*	Cleared by software setting the PLLRDYC bit.
+	*	0: No clock ready interrupt caused by PLL lock
+	*	1: Clock ready interrupt caused by PLL lock
+	*/
 	volatile uint32_t PLLRDYF:1;
-	volatile uint32_t PLLI2SRDYF:1;
-	volatile uint32_t PLLSAIRDYF:1;
-	volatile uint32_t CSSF:1;
-	volatile uint32_t LSIRDYIE:1;
-	volatile uint32_t LSERDYIE:1;
-	volatile uint32_t HSIRDYIE:1;
-	volatile uint32_t HSERDYIE:1;
-	volatile uint32_t PLLRDYIE:1;
-	volatile uint32_t PLLI2SRDYIE:1;
-	volatile uint32_t PLLSAIRDYIE:1;
-	uint32_t reserved0:1;
-	volatile uint32_t LSIRDYC:1;
-	volatile uint32_t LSERDYC:1;
-	volatile uint32_t HSIRDYC:1;
-	volatile uint32_t HSERDYC:1;
-	volatile uint32_t PLLRDYC:1;
-	volatile uint32_t PLLI2SRDYC:1;
-	volatile uint32_t PLLSAIRDYC:1;
-	volatile uint32_t CSSC:1;
-	uint32_t reserved1:8;
+	/*
+	*	Bits 7:6 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 2;
+	/*
+	*	Bit 8 CSSF: Clock security system interrupt flag
+	*	Set by hardware when a failure is detected in the HSE oscillator.
+	*	Cleared by software setting the CSSC bit.
+	*	0: No clock security interrupt caused by HSE clock failure
+	*	1: Clock security interrupt caused by HSE clock failure
+	*/
+	volatile uint32_t CSSF : 1;
+		/*	
+		Bit 9 LSECSSF: LSE clock security system interrupt flag
+		Set by hardware when a failure is detected in the LSE oscillator.
+		Cleared by software setting the LSECSSC bit.
+		0: No clock security interrupt caused by LSE clock failure
+		1: Clock security interrupt caused by LSE clock failure
+	*/
+	volatile uint32_t LSECSSF : 1;
+	/*
+	*	Bit 10 HSI48RDYF: HSI48 ready interrupt flag
+	*	Set by hardware when the HSI48 clock becomes stable and HSI48RDYIE is set in a
+	*	response to setting the HSI48ON (refer to Clock recovery RC register (RCC_CRRCR)).
+	*	Cleared by software setting the HSI48RDYC bit.
+	*	0: No clock ready interrupt caused by the HSI48 oscillator
+	*	1: Clock ready interrupt caused by the HSI48 oscillator
+	*/
+	volatile uint32_t HSI48RDYF : 1;
+	/*
+	*	Bits 31:11 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved2 : 21;
+}RCC_CIFR_t;
 
-}RCC_CIR_t;
+/*
+*	Clock interrupt clear register (RCC_CICR)
+*	Address offset: 0x20
+*	Reset value: 0x0000 0000
+*	Access: no wait state, word, half-word and byte access
+*/
+typedef struct 	
+{
+	/*
+	*	Bit 0 LSIRDYC: LSI ready interrupt clear
+	*	This bit is set by software to clear the LSIRDYF flag.
+	*	0: No effect
+	*	1: LSIRDYF cleared
+	*/
+	volatile uint32_t LSIRDYC : 1;
+	/*
+	*	Bit 1 LSERDYC: LSE ready interrupt clear
+	*	This bit is set by software to clear the LSERDYF flag.
+	*	0: No effect
+	*	1: LSERDYF cleared
+	*/
+	volatile uint32_t LSERDYC : 1;
+	/*
+	*	Bit 2 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 1;
+	/*
+	*	Bit 3 HSIRDYC: HSI16 ready interrupt clear
+	*	This bit is set software to clear the HSIRDYF flag.
+	*	0: No effect
+	*	1: Clear HSIRDYF flag
+	*/
+	volatile uint32_t HSIRDYC : 1;
+	/*
+	*	Bit 4 HSERDYC: HSE ready interrupt clear
+	*	This bit is set by software to clear the HSERDYF flag.
+	*	0: No effect
+	*	1: Clear HSERDYF flag
+	*/
+	volatile uint32_t HSERDYC : 1;
+	/*
+	*	Bit 5 PLLRDYC: PLL ready interrupt clear
+	*	This bit is set by software to clear the PLLRDYF flag.
+	*	0: No effect
+	*	1: Clear PLLRDYF flag
+	*/
+	volatile uint32_t PLLRDYC : 1;
+	/*
+	*	Bits 7:6 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 2;
+	/*
+	*	Bit 8 CSSC: Clock security system interrupt clear
+	*	This bit is set by software to clear the CSSF flag.
+	*	0: No effect
+	*	1: Clear CSSF flag
+	*/
+	volatile uint32_t CSSC : 1;
+	/*
+	*	Bit 9 LSECSSC: LSE clock security system interrupt clear
+	*	This bit is set by software to clear the LSECSSF flag.
+	*	0: No effect
+	*	1: Clear LSECSSF flag
+	*/
+	volatile uint32_t LSECSSC : 1;
+	/*
+	*	Bit 10 HSI48RDYC: HSI48 oscillator ready interrupt clear
+	*	This bit is set by software to clear the HSI48RDYF flag.
+	*	0: No effect
+	*	1: Clear the HSI48RDYC flag
+	*/
+	volatile uint32_t HSI48RDYC : 1;
+	/*
+	*	Bits 31:11 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved2 : 21;
+}RCC_CICR_t;
 
-//RCC AHB1 peripheral reset register (RCC_AHB1RSTR)
+/*
+*	AHB1 peripheral reset register (RCC_AHB1RSTR)
+*	Address offset: 0x28
+*	Reset value: 0x0000 0000
+*	Access: no wait state, word, half-word and byte access
+*/
 typedef struct
 {
-
-	volatile uint32_t GPIOARST:1;
-	volatile uint32_t GPIOBRST:1;
-	volatile uint32_t GPIOCRST:1;
-	volatile uint32_t GPIODRST:1;
-	volatile uint32_t GPIOERST:1;
-	volatile uint32_t GPIOFRST:1;
-	volatile uint32_t GPIOGRST:1;
-	volatile uint32_t GPIOHRST:1;
-	volatile uint32_t GPIOIRST:1;
-	volatile uint32_t GPIOJRST:1;
-	volatile uint32_t GPIOKRST:1;
-	uint32_t reserved0:1;
-	volatile uint32_t CRCRST:1;
-	uint32_t reserved1:8;
-	volatile uint32_t DMA1RST:1;
-	volatile uint32_t DMA2RST:1;
-	volatile uint32_t DMA2DRST:1;
-	uint32_t reserved5:1;
-	volatile uint32_t ETHMACRST:1;
-	uint32_t reserved6:3;
-	volatile uint32_t OTGHSRST:1;
-	uint32_t reserved7:2;
-
+	/*
+	*	Bit 0 DMA1RST: DMA1 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset DMA1
+	*/
+	volatile uint32_t DMA1RST : 1;
+	/*
+	*	Bit 1 DMA2RST: DMA2 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset DMA2
+	*/
+	volatile uint32_t DMA2RST : 1;
+	/*
+	*	Bit 2 DMAMUX1RST: Set and cleared by software.
+	*	0: No effect
+	*	1: Reset DMAMUX1
+	*/
+	volatile uint32_t DMAMUX1RST : 1;
+	/*
+	*	Bit 3 CORDICRST: Set and cleared by software
+	*	0: No effect
+	*	1: Reset CORDIC
+	*/
+	volatile uint32_t CORDICRST : 1;
+	/*
+	*	Bit 4 FMACRST: Set and cleared by software
+	*	0: No effect
+	*	1: Reset FMAC
+	*/
+	volatile uint32_t FMACRST : 1;
+	/*
+	*	Bits 7:5 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 3;
+	/*
+	*	Bit 8 FLASHRST: Flash memory interface reset
+	*	Set and cleared by software. This bit can be activated only when the Flash memory is in
+	*	power down mode.
+	*	0: No effect
+	*	1: Reset Flash memory interface
+	*/
+	volatile uint32_t FLASHRST : 1;
+	/*
+	*	Bits 11:9 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 3;
+	/*
+	*	Bit 12 CRCRST: CRC reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset CRC
+	*/
+	volatile uint32_t CRCRST : 1;
+	/*
+	*	Bits 31:13 Reserved, must be kept at reset value
+	*/
+	volatile uint32_t reserved2 : 19;
 }RCC_AHB1RSTR_t;
 
-//RCC AHB2 peripheral reset register (RCC_AHB2RSTR)
+/*
+*	AHB2 peripheral reset register (RCC_AHB2RSTR)
+*	Address offset: 0x2C
+*	Reset value: 0x0000 0000
+*	Access: no wait state, word, half-word and byte access
+*/
 typedef struct
 {
-
-	volatile uint32_t DCMIRST:1;
-	uint32_t reserved0:3;
-	volatile uint32_t CRYPRST:1;
-	volatile uint32_t HASHRST:1;
-	volatile uint32_t RNGRST:1;
-	volatile uint32_t OTGFSRST:1;
-	uint32_t reserved1:24;
-
-
+	/*
+	*	Bit 0 GPIOARST: IO port A reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset IO port A
+	*/
+	volatile uint32_t GPIOARST : 1;
+	/*
+	*	Bit 1 GPIOBRST: IO port B reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset IO port B
+	*/
+	volatile uint32_t GPIOBRST : 1;
+	/*
+	*	Bit 2 GPIOCRST: IO port C reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset IO port C
+	*/
+	volatile uint32_t GPIOCRST : 1;
+	/*
+	*	Bit 3 GPIODRST: IO port D reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset IO port D
+	*/
+	volatile uint32_t GPIODRST : 1;
+	/*
+	*	Bit 4 GPIOERST: IO port E reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset IO port E
+	*/
+	volatile uint32_t GPIOERST : 1;
+	/*
+	*	Bit 5 GPIOFRST: IO port F reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset IO port F
+	*/
+	volatile uint32_t GPIOFRST : 1;
+	/*
+	*	Bit 6 GPIOGRST: IO port G reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset IO port G
+	*/
+	volatile uint32_t GPIOGRST : 1;
+	/*
+	*	Bits 12:7 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 6;
+	/*
+	*	Bit 13 ADC12RST: ADC12 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset ADC12 interface
+	*/
+	volatile uint32_t ADC12RST : 1;
+	/*
+	*	Bit 14 ADC345RST: ADC345 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset ADC345
+	*/
+	volatile uint32_t ADC345RST : 1;
+	/*
+	*	Bit 15 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 1;
+	/*
+	*	Bit 16 DAC1RST: DAC1 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset DAC1
+	*/
+	volatile uint32_t DAC1RST : 1;
+	/*
+	*	Bit 17 DAC2RST: DAC2 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset DAC2
+	*/
+	volatile uint32_t DAC2RST : 1;
+	/*
+	*	Bit 18 DAC3RST: DAC3 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset DAC3
+	*/
+	volatile uint32_t DAC3RST : 1;
+	/*
+	*	Bit 19 DAC4RST: DAC4 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset DAC4
+	*/
+	volatile uint32_t DAC4RST : 1;
+	/*
+	*	Bits 23:20 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved2 : 4;
+	/*
+	*	Bit 24 AESRST: AESRST reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset AES
+	*/
+	volatile uint32_t AESRST : 1;
+	/*
+	*	Bit 25 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved3 : 1;
+	/*
+	*	Bit 26 RNGRST: RNG reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset RNG
+	*/
+	volatile uint32_t RNGRST : 1;
+	/*
+	*	Bits 31:27 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved4 : 5;
 }RCC_AHB2RSTR_t;
 
-//RCC AHB3 peripheral reset register (RCC_AHB3RSTR)
+/*
+*	AHB3 peripheral reset register (RCC_AHB3RSTR)
+*	Address offset: 0x30
+*	Reset value: 0x0000 0000
+*	Access: no wait state, word, half-word and byte access
+*/ 
 typedef struct
 {
-
-	volatile uint32_t FMCRST:1;
-	uint32_t reserved0:31;
-
+	/*
+	*	Bit 0 FMCRST: Flexible static memory controller reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset FSMC
+	*/
+	volatile uint32_t FMCRST : 1;
+	/*
+	*	Bits 7:1 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 7;
+	/*
+	*	Bit 8 QSPIRST: QUADSPI reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset QUADSPI
+	*/
+	volatile uint32_t QSPIRST : 1;
+	/*
+	*	Bits 31:9 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 23;
 }RCC_AHB3RSTR_t;
 
-//RCC APB1 peripheral reset register (RCC_APB1RSTR)
+/*
+*	APB1 peripheral reset register 1 (RCC_APB1RSTR1)
+*	Address offset: 0x38
+*	Reset value: 0x0000 0000
+*	Access: no wait state, word, half-word and byte access
+*/
 typedef struct
 {
-
-	volatile uint32_t TIM2RST:1;
-	volatile uint32_t TIM3RST:1;
-	volatile uint32_t TIM4RST:1;
-	volatile uint32_t TIM5RST:1;
-	volatile uint32_t TIM6RST:1;
+	/*
+	*	Bit 0 TIM2RST: TIM2 timer reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset TIM2
+	*/
+	volatile uint32_t TIM2RST : 1;
+	/*
+	*	Bit 1 TIM3RST: TIM3 timer reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset TIM3
+	*/
+	volatile uint32_t TIM3RST : 1;
+	/*
+	*	Bit 2 TIM4RST: TIM4 timer reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset TIM4
+	*/
+	volatile uint32_t TIM4RST : 1;
+	/*
+	*	Bit 3 TIM5RST: TIM5 timer reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset TIM5
+	*/
+	volatile uint32_t TIM5RST : 1;
+	/*
+	*	Bit 4 TIM6RST: TIM6 timer reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset TIM6
+	*/
+	volatile uint32_t TIM6RST : 1;
+	/*
+	*	Bit 5 TIM7RST: TIM7 timer reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset TIM7
+	*/
 	volatile uint32_t TIM7RST:1;
-	volatile uint32_t TIM12RST:1;
-	volatile uint32_t TIM13RST:1;
-	volatile uint32_t TIM14RST:1;
-	uint32_t reserved0:2;
-	volatile uint32_t WWDGRST:1;
-	uint32_t reserved1:2;
-	volatile uint32_t SPI2RST:1;
-	volatile uint32_t SPI3RST:1;
-	uint32_t reserved2:1;
-	volatile uint32_t USART2RST:1;
-	volatile uint32_t USART3RST:1;
-	volatile uint32_t UART4RST:1;
-	volatile uint32_t UART5RST:1;
-	volatile uint32_t I2C1RST:1;
-	volatile uint32_t I2C2RST:1;
-	volatile uint32_t I2C3RST:1;
-	uint32_t reserved3:1;
-	volatile uint32_t CAN1RST:1;
-	volatile uint32_t CAN2RST:1;
-	uint32_t reserved4:1;
+	/*
+	*	Bits 7:6 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 2;
+	/*
+	*	Bit 8 CRSRST: CRS reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset CRS
+	*/
+	volatile uint32_t CRSRST : 1;
+	/*
+	*	Bits 13:9 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 5;
+	/*
+	*	Bit 14 SPI2RST: SPI2 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset SPI2 
+	*/
+	volatile uint32_t SPI2RST : 1;
+	/*
+	*	Bit 15 SPI3RST: SPI3 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset SPI3
+	*/
+	volatile uint32_t SPI3RST : 1;
+	/*
+	*	Bit 16 Reserved, must be kept at reset value.
+	*/
+	uint32_t reserved2 : 1;
+	/*
+	*	Bit 17 USART2RST: USART2 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset USART2
+	*/
+	volatile uint32_t USART2RST : 1;
+	/*
+	*	Bit 18 USART3RST: USART3 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset USART3
+	*/
+	volatile uint32_t USART3RST : 1;
+	/*
+	*	Bit 19 UART4RST: UART4 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset UART4
+	*/
+	volatile uint32_t UART4RST : 1;
+	/*
+	*	Bit 20 UART5RST: UART5 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset UART5
+	*/
+	volatile uint32_t UART5RST : 1;
+	/*
+	*	Bit 21 I2C1RST: I2C1 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset I2C1
+	*/
+	volatile uint32_t I2C1RST : 1;
+	/*
+	*	Bit 22 I2C2RST: I2C2 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset I2C2
+	*/
+	volatile uint32_t I2C2RST : 1;
+	/*
+	*	Bit 23 USBRST: USB device reset
+	*	Set and reset by software.
+	*	0: No effect
+	*	1: Reset USB device
+	*/
+	volatile uint32_t USBRST : 1;
+	/*
+	*	Bit 24 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved3 : 1;
+	/*
+	*	Bit 25 FDCANRST: FDCAN reset
+	*	Set and reset by software.
+	*	0: No effect
+	*	1: Reset the FDCAN
+	*/
+	volatile uint32_t FDCANRST : 1;
+	/*
+	*	Bits 27:26 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved4 : 2;
+	/*
+	*	Bit 28 PWRRST: Power interface reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset PWR
+	*/
 	volatile uint32_t PWRRST:1;
-	volatile uint32_t DACRST:1;
-	volatile uint32_t UART7RST:1;
-	volatile uint32_t UART8RST:1;
+	/*
+	*	Bit 29 Reserved, must be kept at reset value
+	*/
+	volatile uint32_t reserved5 : 1;
+	/*
+	*	Bit 30 I2C3RST: I2C3 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset I2C3 interface
+	*/
+	volatile uint32_t I2C3RST : 1;
+	/*
+	*	Bit 31 LPTIM1RST: Low Power Timer 1 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset LPTIM1
+	*/
+	volatile uint32_t LPTIM1RST : 1;
+}RCC_APB1RSTR1_t;
 
-}RCC_APB1RSTR_t;
+/*
+*	APB1 peripheral reset register 2 (RCC_APB1RSTR2)
+*	Address offset: 0x3C
+*	Reset value: 0x0000 0000
+*	Access: no wait state, word, half-word and byte access
+*/
+typedef struct 
+{
+	/*
+	*	Bit 0 LPUART1RST: Low-power UART 1 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset LPUART1
+	*/
+	volatile uint32_t LPUART1 : 1;
+	/*
+	*	Bit 1 I2C4RST: I2C4 reset
+	*	Set and cleared by software
+	*	0: No effect
+	*	1: Reset I2C4
+	*/
+	volatile uint32_t I2C4RST : 1;
+	/*
+	*	Bits 7:2 Reserved, must be kept at reset value.
+	*/
+	volatile reserved0 : 6;
+	/*
+	*	Bit 8 UCPD1RST: UCPD1 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset UCPD1
+	*/
+	volatile uint32_t UCPD1RST : 1;
+	/*
+	*	Bits 31:9 Reserved, must be kept at reset value.	
+	*/
+	volatile uint32_t reserved1 : 23;
+}RCC_APB1RSTR2_t;
 
-//RCC APB2 peripheral reset register (RCC_APB2RSTR)
+
 typedef struct
 {
 
