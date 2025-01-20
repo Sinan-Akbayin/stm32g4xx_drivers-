@@ -1403,7 +1403,7 @@ typedef struct
 	/*
 	*	Bits 7:2 Reserved, must be kept at reset value.
 	*/
-	volatile reserved0 : 6;
+	volatile uint32_t reserved0 : 6;
 	/*
 	*	Bit 8 UCPD1RST: UCPD1 reset
 	*	Set and cleared by software.
@@ -1417,70 +1417,1174 @@ typedef struct
 	volatile uint32_t reserved1 : 23;
 }RCC_APB1RSTR2_t;
 
-
+/*
+*	APB2 peripheral reset register (RCC_APB2RSTR)
+*	Address offset: 0x40
+*	Reset value: 0x0000 0000
+*	Access: no wait state, word, half-word and byte access
+*/
 typedef struct
 {
-
-	volatile uint32_t TIM1RST:1;
-	volatile uint32_t TIM8RST:1;
-	uint32_t reserved0:2;
-	volatile uint32_t USART1RST:1;
-	volatile uint32_t USART6RST:1;
-	uint32_t reserved1:2;
-	volatile uint32_t ADCRST:1;
-	uint32_t reserved2:2;
-	volatile uint32_t SDIORST:1;
-	volatile uint32_t SPI1RST:1;
-	volatile uint32_t SPI4RST:1;
-	volatile uint32_t SYSCFGRST:1;
-	uint32_t reserved3:1;
-	volatile uint32_t TIM9RST:1;
-	volatile uint32_t TIM10RST:1;
-	volatile uint32_t TIM11RST:1;
-	uint32_t reserved4:1;
-	volatile uint32_t SPI5RST:1;
-	volatile uint32_t SPI6RST:1;
-	volatile uint32_t SAI1RST:1;
-	uint32_t reserved5:3;
-	volatile uint32_t LTDCRST:1;
-	uint32_t reserved6:5;
-
+	/*
+	*	Bit 0 SYSCFGRST: SYSCFG + COMP + OPAMP + VREFBUF reset
+	*	0: No effect
+	*	1: Reset SYSCFG + COMP + OPAMP + VREFBUF
+	*/
+	volatile uint32_t SYSCFGRST : 1;
+	/*
+	*	Bits 10:1 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 10;
+	/*
+	*	Bit 11 TIM1RST: TIM1 timer reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset TIM1 timer
+	*/
+	volatile uint32_t TIM1RST : 1;
+	/*
+	*	Bit 12 SPI1RST: SPI1 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset SPI1
+	*/
+	volatile uint32_t SPI1RST : 1;
+	/*
+	*	Bit 13 TIM8RST: TIM8 timer reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset TIM8 timer
+	*/
+	volatile uint32_t TIM8RST : 1;
+	/*
+	*	Bit 14 USART1RST: USART1 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset USART1
+	*/
+	volatile uint32_t USART1RST : 1;
+	/*
+	*	Bit 15 SPI4RST: SPI4 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset SPI4
+	*/
+	volatile uint32_t SPI4RST : 1;
+	/*
+	*	Bit 16 TIM15RST: TIM15 timer reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset TIM15 timer
+	*/
+	volatile uint32_t TIM15RST : 1;
+	/*
+	*	Bit 17 TIM16RST: TIM16 timer reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset TIM16 timer
+	*/
+	volatile uint32_t TIM16RST : 1;
+	/*
+	*	Bit 18 TIM17RST: TIM17 timer reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset TIM17 timer
+	*/
+	volatile uint32_t TIM17RST : 1;
+	/*
+	*	Bit 19 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 1;
+	/*
+	*	Bit 20 TIM20RST: TIM20 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset TIM20
+	*/
+	volatile uint32_t TIM20RST : 1;
+	/*
+	*	Bit 21 SAI1RST: Serial audio interface 1 (SAI1) reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset SAI1 
+	*/
+	volatile uint32_t SAI1RST : 1;
+	/*
+	*	Bits 25:22 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved2 : 4;
+	/*
+	*	Bit 26 HRTIM1RST: HRTIM1 reset
+	*	Set and cleared by software.
+	*	0: No effect
+	*	1: Reset HRTIM1
+	*/
+	volatile uint32_t HRTIM1RST : 1;
+	/*
+	*	Bits 31:27 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved3 : 5;
 }RCC_APB2RSTR_t;
 
-//RCC AHB1 peripheral clock enable register (RCC_AHB1ENR)
+/*
+*	AHB1 peripheral clock enable register (RCC_AHB1ENR)
+*	Address offset: 0x48
+*	Reset value: 0x0000 0100
+*	Access: no wait state, word, half-word and byte access
+*	@note : When the peripheral clock is not active, the peripheral registers read or write access is not supported.
+*/
 typedef struct
 {
-
-	volatile uint32_t GPIOAEN:1;
-	volatile uint32_t GPIOBEN:1;
-	volatile uint32_t GPIOCEN:1;
-	volatile uint32_t GPIODEN:1;
-	volatile uint32_t GPIOEEN:1;
-	volatile uint32_t GPIOFEN:1;
-	volatile uint32_t GPIOGEN:1;
-	volatile uint32_t GPIOHEN:1;
-	volatile uint32_t GPIOIEN:1;
-	volatile uint32_t GPIOJEN:1;
-	volatile uint32_t GPIOKEN:1;
-	uint32_t reserved0:1;
-	volatile uint32_t CRCEN:1;
-	uint32_t reserved1:5;
-	volatile uint32_t BKPSRAMEN:1;
-	uint32_t reserved2:1;
-	volatile uint32_t CCMDATARAMEN:1;
-	volatile uint32_t DMA1EN:1;
-	volatile uint32_t DMA2EN:1;
-	volatile uint32_t DMA2DEN:1;
-	uint32_t reserved3:1;
-	volatile uint32_t ETHMACEN:1;
-	volatile uint32_t ETHMACTXEN:1;
-	volatile uint32_t ETHMACRXEN:1;
-	volatile uint32_t ETHMACPTPEN:1;
-	volatile uint32_t OTGHSEN:1;
-	volatile uint32_t OTGHSULPIEN:1;
-	uint32_t reserved4:1;
-
+	/*
+	*	Bit 0 DMA1EN: DMA1 clock enable
+	*	Set and cleared by software.
+	*	0: DMA1 clock disabled
+	*	1: DMA1 clock enable
+	*/
+	volatile uint32_t DMA1EN : 1;
+	/*
+	*	Bit 1 DMA2EN: DMA2 clock enable
+	*	Set and cleared by software.
+	*	0: DMA2 clock disabled
+	*	1: DMA2 clock enable
+	*/
+	volatile uint32_t DMA2EN : 1;
+	/*
+	*	Bit 2 DMAMUX1EN: DMAMUX1 clock enable
+	*	Set and reset by software.
+	*	0: DMAMUX1 clock disabled
+	*	1: DMAMUX1 clock enabled
+	*/
+	volatile uint32_t DMAMUX1EN : 1;
+	/*
+	*	Bit 3 CORDICEN: CORDIC clock enable
+	*	Set and reset by software.
+	*	0: CORDIC clock disabled
+	*	1: CORDIC clock enabled
+	*/
+	volatile uint32_t CORDICEN : 1;
+	/*
+	*	Bit 4 FMACEN: FMAC enable
+	*	Set and reset by software.
+	*	0: FMAC clock disabled
+	*	1: FMAC clock enabled
+	*/
+	volatile uint32_t FMACEN : 1;
+	/*
+	*	Bits 7:5 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 3;
+	/*
+	*	Bit 8 FLASHEN: Flash memory interface clock enable
+	*	Set and cleared by software. This bit can be disabled only when the Flash is in power down
+	*	mode.
+	*	0: Flash memory interface clock disabled
+	*	1: Flash memory interface clock enabled
+	*/
+	volatile uint32_t FLASHEN : 1;
+	/*
+	*	Bits 11:9 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 3;
+	/*
+	*	Bit 12 CRCEN: CRC clock enable
+	*	Set and cleared by software.
+	*	0: CRC clock disabled
+	*	1: CRC clock enable
+	*/
+	volatile uint32_t CRCEN : 1;
+	/*
+	*	Bits 31:13 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved2 : 19;
 }RCC_AHB1ENR_t;
+
+/*
+*	AHB2 peripheral clock enable register (RCC_AHB2ENR)
+*	Address offset: 0x4C
+*	Reset value: 0x0000 0000
+*	Access: no wait state, word, half-word and byte access
+*	@note : When the peripheral clock is not active, the peripheral registers read or write access is not supported.
+*/
+typedef struct
+{
+	/*
+	*	Bit 0 GPIOAEN: IO port A clock enable
+	*	Set and cleared by software.
+	*	0: IO port A clock disabled
+	*	1: IO port A clock enabled
+	*/
+	volatile uint32_t GPIOAEN : 1;
+	/*
+	*	Bit 1 GPIOBEN: IO port B clock enable
+	*	Set and cleared by software.
+	*	0: IO port B clock disabled
+	*	1: IO port B clock enabled
+	*/
+	volatile uint32_t GPIOBEN : 1;
+	/*
+	*	Bit 2 GPIOCEN: IO port C clock enable
+	*	Set and cleared by software.
+	*	0: IO port C clock disabled
+	*	1: IO port C clock enabled
+	*/
+	volatile uint32_t GPIOCEN : 1;
+	/*
+	*	Bit 3 GPIODEN: IO port D clock enable
+	*	Set and cleared by software.
+	*	0: IO port D clock disabled
+	*	1: IO port D clock enabled
+	*/
+	volatile uint32_t GPIODEN : 1;
+	/*
+	*	Bit 4 GPIOEEN: IO port E clock enable
+	*	Set and cleared by software.
+	*	0: IO port E clock disabled
+	*	1: IO port E clock enabled
+	*/
+	volatile uint32_t GPIOEEN : 1;
+	/*
+	*	Bit 5 GPIOFEN: IO port F clock enable
+	*	Set and cleared by software.
+	*	0: IO port F clock disabled
+	*	1: IO port F clock enabled
+	*/
+	volatile uint32_t GPIOFEN : 1;
+	/*
+	*	Bit 6 GPIOGEN: IO port G clock enable
+	*	Set and cleared by software.
+	*	0: IO port G clock disabled
+	*	1: IO port G clock enabled
+	*/
+	volatile uint32_t GPIOGEN : 1;
+	/*
+	*	Bits 12:7 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 6;
+	/*
+	*	Bit 13 ADC12EN: ADC12 clock enable
+	*	Set and cleared by software.
+	*	0: ADC12 clock disabled
+	*	1: ADC12 clock enabled
+	*/
+	volatile uint32_t ADC12EN : 1;
+	/*
+	*	Bit 14 ADC345EN: ADC345 clock enable
+	*	Set and cleared by software
+	*	0: ADC345 clock disabled
+	*	1: ADC345 clock enabled
+	*/
+	volatile uint32_t ADC345EN : 1;
+	/*
+	*	Bit 15 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 1;
+	/*
+	*	Bit 16 DAC1EN: DAC1 clock enable
+	*	Set and cleared by software.
+	*	0: DAC1 clock disabled
+	*	1: DAC1 clock enabled
+	*/
+	volatile uint32_t DAC1EN : 1;
+	/*
+	*	Bit 17 DAC2EN: DAC2 clock enable
+	*	Set and cleared by software.
+	*	0: DAC2 clock disabled
+	*	1: DAC2 clock enabled
+	*/
+	volatile uint32_t DAC2EN : 1;
+	/*
+	*	Bit 18 DAC3EN: DAC3 clock enable
+	*	Set and cleared by software.
+	*	0: DAC3 clock disabled
+	*	1: DAC3 clock enabled
+	*/
+	volatile uint32_t DAC3EN : 1;
+	/*
+	*	Bit 19 DAC4EN: DAC4 clock enable
+	*	Set and cleared by software.
+	*	0: DAC4 clock disabled
+	*	1: DAC4 clock enabled
+	*/
+	volatile uint32_t DAC4EN : 1;
+	/*
+	*	Bits 23:20 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved2 : 4;
+	/*
+	*	Bit 24 AESEN: AES clock enable
+	*	Set and cleared by software.
+	*	0: AES clock disabled
+	*	1: AES clock enabled
+	*/
+	volatile uint32_t AESEN : 1;
+	/*
+	*	Bit 25 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved3 : 1;
+	/*
+	*	Bit 26 RNGEN: RNG enable
+	*	Set and cleared by software.
+	*	0: RNG disabled
+	*	1: RNG enabled
+	*/
+	volatile uint32_t RNGEN : 1;
+	/*
+	*	Bits 31:27 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved4 : 5;
+}RCC_AHB2ENR_t;
+
+/*
+*	AHB3 peripheral clock enable register(RCC_AHB3ENR)
+*	Address offset: 0x50
+*	Reset value: 0x0000 0000
+*	Access: no wait state, word, half-word and byte access
+*	@note When the peripheral clock is not active, the peripheral registers read or write access is not supported.
+*/
+typedef struct
+{
+	/*
+	*	Bit 0 FMCEN: Flexible static memory controller clock enable
+	*	Set and cleared by software.
+	*	0: FSMC clock disabled
+	*	1: FSMC clock enabled
+	*/
+	volatile uint32_t FMCEN : 1;
+	/*
+	*	Bits 7:1 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 7;
+	/*
+	*	Bit 8 QSPIEN: QUADSPI memory interface clock enable
+	*	Set and cleared by software.
+	*	0: QUADSPI clock disabled
+	*	1: QUADSPI clock enabled
+	*/
+	volatile uint32_t QSPIEN : 1;
+	/*
+	*	Bits 31:9 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 23;
+}RCC_AHB3ENR_t;
+
+/*
+*	APB1 peripheral clock enable register 1 (RCC_APB1ENR1)
+*	Address: 0x58
+*	Reset value: 0x0000 0400
+*	Access: no wait state, word, half-word and byte access
+*	@note : When the peripheral clock is not active, the peripheral registers read or write access is not supported.
+*/
+typedef struct
+{
+	/*
+	*	Bit 0 TIM2EN: TIM2 timer clock enable
+	*	Set and cleared by software.
+	*	0: TIM2 clock disabled
+	*	1: TIM2 clock enabled
+	*/
+	volatile uint32_t TIM2EN : 1;
+	/*
+	*	Bit 1 TIM3EN: TIM3 timer clock enable
+	*	Set and cleared by software.
+	*	0: TIM3 clock disabled
+	*	1: TIM3 clock enabled
+	*/
+	volatile uint32_t TIM3EN : 1;
+	/*
+	*	Bit 2 TIM4EN: TIM4 timer clock enable
+	*	Set and cleared by software.
+	*	0: TIM4 clock disabled
+	*	1: TIM4 clock enabled
+	*/
+	volatile uint32_t TIM4EN : 1;
+	/*
+	*	Bit 3 TIM5EN: TIM5 timer clock enable
+	*	Set and cleared by software.
+	*	0: TIM5 clock disabled
+	*	1: TIM5 clock enabled
+	*/
+	volatile uint32_t TIM5EN : 1;
+	/*
+	*	Bit 4 TIM6EN: TIM6 timer clock enable
+	*	Set and cleared by software.
+	*	0: TIM6 clock disabled
+	*	1: TIM6 clock enabled
+	*/
+	volatile uint32_t TIM6EN : 1;
+	/*
+	*	Bit 5 TIM7EN: TIM7 timer clock enable
+	*	Set and cleared by software.
+	*	0: TIM7 clock disabled
+	*	1: TIM7 clock enabled
+	*/
+	volatile uint32_t TIM7EN : 1;
+	/*
+	*	Bits 7:6 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 2;
+	/*
+	*	Bit 8 CRSEN: CRS Recovery System clock enable
+	*	Set and cleared by software.
+	*	0: CRS clock disabled
+	*	1: CRS clock enabled
+	*/
+	volatile uint32_t CRSEN : 1;
+	/*
+	*	Bit 9 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 1;
+	/*
+	*	Bit 10 RTCAPBEN: RTC APB clock enable
+	*	Set and cleared by software
+	*	0: RTC APB clock disabled
+	*	1: RTC APB clock enabled
+	*/
+	volatile uint32_t RTCAPBEN : 1;
+	/*
+	*	Bit 11 WWDGEN: Window watchdog clock enable
+	*	Set by software to enable the window watchdog clock. Reset by hardware system reset.
+	*	This bit can also be set by hardware if the WWDG_SW option bit is reset.
+	*	0: Window watchdog clock disabled
+	*	1: Window watchdog clock enabled
+	*/
+	volatile uint32_t WWDGEN : 1;
+	/*
+	*	Bits 13:12 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved2 : 2;
+	/*
+	*	Bit 14 SPI2EN: SPI2 clock enable
+	*	Set and cleared by software.
+	*	0: SPI2 clock disabled
+	*	1: SPI2 clock enabled
+	*/
+	volatile uint32_t SPI2EN : 1;
+	/*
+	*	Bit 15 SPI3EN: SPI3 clock enable
+	*	Set and cleared by software.
+	*	0: SPI3 clock disabled
+	*	1: SPI3 clock enabled
+	*/
+	volatile uint32_t SPI3EN : 1;
+	/*
+	*	Bit 16 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved3 : 1;
+	/*
+	*	Bit 17 USART2EN: USART2 clock enable
+	*	Set and cleared by software.
+	*	0: USART2 clock disabled
+	*	1: USART2 clock enabled
+	*/
+	volatile uint32_t USART2EN : 1;
+	/*
+	*	Bit 18 USART3EN: USART3 clock enable
+	*	Set and cleared by software.
+	*	0: USART3 clock disabled
+	*	1: USART3 clock enabled
+	*/
+	volatile uint32_t USART3EN : 1;
+	/*
+	*	Bit 19 UART4EN: UART4 clock enable
+	*	Set and cleared by software.
+	*	0: UART4 clock disabled
+	*	1: UART4 clock enabled
+	*/
+	volatile uint32_t UART4EN : 1;
+	/*
+	*	Bit 20 UART5EN: UART5 clock enable
+	*	Set and cleared by software.
+	*	0: UART5 clock disabled
+	*	1: UART5 clock enabled
+	*/
+	volatile uint32_t UART5EN : 1;
+	/*
+	*	Bit 21 I2C1EN: I2C1 clock enable
+	*	Set and cleared by software.
+	*	0: I2C1 clock disabled
+	*	1: I2C1 clock enabled
+	*/
+	volatile uint32_t I2C1EN : 1;
+	/*
+	*	Bit 22 I2C2EN: I2C2 clock enable
+	*	Set and cleared by software.
+	*	0: I2C2 clock disabled
+	*	1: I2C2 clock enabled
+	*/
+	volatile uint32_t I2C2EN : 1;
+	/*
+	*	Bit 23 USBEN: USB device clock enable
+	*	Set and cleared by software.
+	*	0: USB device clock disabled
+	*	1: USB device clock enabled
+	*/
+	volatile uint32_t USBEN : 1;
+	/*
+	*	Bit 24 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved4 : 1;
+	/*
+	*	Bit 25 FDCANEN: FDCAN clock enable
+	*	Set and cleared by software.
+	*	0: FDCAN clock disabled
+	*	1: FDCAN clock enabled
+	*/
+	volatile uint32_t FDCANEN : 1;
+	/*
+	*	Bits 27:26 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved5 : 2;
+	/*
+	*	Bit 28 PWREN: Power interface clock enable
+	*	Set and cleared by software.
+	*	0: Power interface clock disabled
+	*	1: Power interface clock enabled
+	*/
+	volatile uint32_t PWREN : 1;
+	/*
+	*	Bit 29 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved6 : 1;
+	/*
+	*	Bit 30 I2C3EN: I2C3 clock enable
+	*	Set and cleared by software.
+	*	0: I2C3 clock disabled
+	*	1: I2C3 clock enabled
+	*/
+	volatile uint32_t I2C3EN : 1;
+	/*
+	*	Bit 31 LPTIM1EN: Low power timer 1 clock enable
+	*	Set and cleared by software.
+	*	0: LPTIM1 clock disabled
+	*	1: LPTIM1 clock enabled
+	*/
+	volatile uint32_t LPTIM1EN : 1;
+}RCC_APB1ENR1_t;
+
+/*
+*	APB1 peripheral clock enable register 2 (RCC_APB1ENR2)
+*	Address offset: 0x5C
+*	Reset value: 0x0000 0000
+*	Access: no wait state, word, half-word and byte access
+*	@note : When the peripheral clock is not active, the peripheral registers read or write access is not supported.
+*/
+typedef struct
+{
+	/*
+	*	Bit 0 LPUART1EN: Low power UART 1 clock enable
+	*	Set and cleared by software.
+	*	0: LPUART1 clock disabled
+	*	1: LPUART1 clock enabled
+	*/
+	volatile uint32_t LPUART1EN : 1;
+	/*
+	*	Bit 1 I2C4EN: I2C4 clock enable
+	*	Set and cleared by software
+	*	0: I2C4 clock disabled
+	*	1: I2C4 clock enabled
+	*/
+	volatile uint32_t I2C4EN : 1;
+	/*
+	*	Bits 7:2 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 6;
+	/*
+	*	Bit 8 UCPD1EN: UCPD1 clock enable
+	*	Set and cleared by software.
+	*	0: UCPD1 clock disabled
+	*	1: UCPD1 clock enabled
+	*/
+	volatile uint32_t UCPD1EN : 1;
+	/*
+	*	Bits 31:9 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 23;
+}RCC_APB1ENR2_t;
+
+/*
+*	APB2 peripheral clock enable register (RCC_APB2ENR)
+*	Address: 0x60
+*	Reset value: 0x0000 0000
+*	Access: word, half-word and byte access
+*	@note : When the peripheral clock is not active, the peripheral registers read or write access is not supported.
+*/
+typedef struct
+{
+	/*
+	*	Bit 0 SYSCFGEN: SYSCFG + COMP + VREFBUF + OPAMP clock enable
+	*	Set and cleared by software.
+	*	0: SYSCFG + COMP + VREFBUF + OPAMP clock disabled
+	*	1: SYSCFG + COMP + VREFBUF + OPAMP clock enabled
+	*/
+	volatile uint32_t SYSCFGEN : 1;
+	/*
+	*	Bits 10:1 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 10;
+	/*
+	*	Bit 11 TIM1EN: TIM1 timer clock enable
+	*	Set and cleared by software.
+	*	0: TIM1 timer clock disabled
+	*	1: TIM1P timer clock enabled
+	*/
+	volatile uint32_t TIM1EN : 1;
+	/*
+	*	Bit 12 SPI1EN: SPI1 clock enable
+	*	Set and cleared by software.
+	*	0: SPI1 clock disabled
+	*	1: SPI1 clock enabled
+	*/
+	volatile uint32_t SPI1EN : 1;
+	/*
+	*	Bit 13 TIM8EN: TIM8 timer clock enable
+	*	Set and cleared by software.
+	*	0: TIM8 timer clock disabled
+	*	1: TIM8 timer clock enabled
+	*/
+	volatile uint32_t TIM8EN : 1;
+	/*
+	*	Bit 14 USART1EN: USART1clock enable
+	*	Set and cleared by software.
+	*	0: USART1clock disabled
+	*	1: USART1clock enabled
+	*/
+	volatile uint32_t USART1EN : 1;
+	/*
+	*	Bit 15 SPI4EN: SPI4 clock enable
+	*	Set and cleared by software.
+	*	0: SPI4 clock disabled
+	*	1: SPI4 clock enabled
+	*/
+	volatile uint32_t SPI4EN : 1;
+	/*
+	*	Bit 16 TIM15EN: TIM15 timer clock enable
+	*	Set and cleared by software.
+	*	0: TIM15 timer clock disabled
+	*	1: TIM15 timer clock enabled
+	*/
+	volatile uint32_t TIM15EN : 1;
+	/*
+	*	Bit 17 TIM16EN: TIM16 timer clock enable
+	*	Set and cleared by software.
+	*	0: TIM16 timer clock disabled
+	*	1: TIM16 timer clock enabled
+	*/
+	volatile uint32_t TIM16EN : 1;
+	/*
+	*	Bit 18 TIM17EN: TIM17 timer clock enable
+	*	Set and cleared by software.
+	*	0: TIM17 timer clock disabled
+	*	1: TIM17 timer clock enabled
+	*/
+	volatile uint32_t TIM17EN : 1;
+	/*
+	*	Bit 19 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 1;
+	/*
+	*	Bit 20 TIM20EN: TIM20 timer clock enable
+	*	Set and cleared by software.
+	*	0: TIM20 clock disabled
+	*	1: TIM20 clock enabled
+	*/
+	volatile uint32_t TIM20EN : 1;
+	/*
+	*	Bit 21 SAI1EN: SAI1 clock enable
+	*	Set and cleared by software.
+	*	0: SAI1 clock disabled
+	*	1: SAI1 clock enabled
+	*/
+	volatile uint32_t SAI1EN : 1;
+	/*
+	*	Bits 25:22 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved2 : 4;
+	/*
+	*	Bit 26 HRTIM1EN: HRTIM1 clock enable
+	*	Set and cleared by software.
+	*	0: HRTIM1 clock disabled
+	*	1: HRTIM1 clock enable
+	*/
+	volatile uint32_t HRTIM1EN : 1;
+	/*
+	*	Bits 31:27 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved3 : 5;
+}RCC_APB2ENR_t;
+
+/*
+*	AHB1 peripheral clocks enable in Sleep and Stop modes register
+*	(RCC_AHB1SMENR)
+*	Address offset: 0x68
+*	Reset value: 0x0000 131F
+*	Access: no wait state, word, half-word and byte access
+*	
+*	(1) This register only configures the clock gating, not the clock source itself. Most of the peripherals are clocked by a single
+*	clock (AHB or APB clock), which is always disabled in Stop mode. In this case setting the bit has no effect in Stop mode.
+*/
+typedef struct
+{
+	/*
+	*	Bit 0 DMA1SMEN: DMA1 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: DMA1 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: DMA1 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t DMA1SMEN : 1;
+	/*
+	*	Bit 1 DMA2SMEN: DMA2 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software during Sleep mode.
+	*	0: DMA2 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: DMA2 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t DMA2SMEN : 1;
+	/*
+	*	Bit 2 DMAMUX1SMEN: DMAMUX1 clock enable during Sleep and Stop modes.
+	*	Set and cleared by software.
+	*	0: DMAMUX1 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: DMAMUX1 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t DMAMUX1SMEN : 1;
+	/*
+	*	Bit 3 CORDICSMEN: CORDICSM clock enable.
+	*	Set and cleared by software.
+	*	0: CORDICSM clocks disabled
+	*	1: CORDICSM clocks enabled
+	*/
+	volatile uint32_t CORDICSMEN : 1;
+	/*
+	*	Bit 4 FMACSMEN: FMACSM clock enable.
+	*	Set and cleared by software.
+	*	0: FMACSM clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: FMACSM clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t FMACSMEN : 1;
+	/*
+	*	Bits 7:5 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 3;
+	/*
+	*	Bit 8 FLASHSMEN: Flash memory interface clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: Flash memory interface clocks disabled by the clock gating(1) during Sleep and Stop
+	*	modes
+	*	1: Flash memory interface clocks enabled by the clock gating(1) during Sleep and Stop
+	*	modes
+	*/
+	volatile uint32_t FLASHSMEN : 1;
+	/*
+	*	Bit 9 SRAM1SMEN: SRAM1 interface clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: SRAM1 interface clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: SRAM1 interface clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t SRAM1SMEN : 1;
+	/*
+	*	Bits 11:10 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 2;
+	/*
+	*	Bit 12 CRCSMEN: CRC clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: CRC clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: CRC clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t CRCSMEN : 1;
+	/*
+	*	Bits 31:13 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved2 : 19;
+}RCC_AHB1SMENR_t;
+/*
+*	AHB2 peripheral clocks enable in Sleep and Stop modes register
+*	(RCC_AHB2SMENR)
+*	Address offset: 0x6C
+*	Reset value: 0x050F 667F
+*	Access: no wait state, word, half-word and byte access
+*
+*	(1) This register only configures the clock gating, not the clock source itself. Most of the peripherals are clocked by a single
+*	clock (AHB or APB clock), which is always disabled in Stop mode. In this case setting the bit has no effect in Stop mode.
+*/
+typedef struct
+{
+	/*
+	*	Bit 0 GPIOASMEN: IO port A clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: IO port A clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: IO port A clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t GPIOASMEN : 1;
+	/*
+	*	Bit 1 GPIOBSMEN: IO port B clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: IO port B clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: IO port B clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t GPIOBSMEN : 1;
+	/*
+	*	Bit 2 GPIOCSMEN: IO port C clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: IO port C clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: IO port C clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t GPIOCSMEN : 1;
+	/*
+	*	Bit 3 GPIODSMEN: IO port D clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: IO port D clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: IO port D clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t GPIODSMEN : 1;
+	/*
+	*	Bit 4 GPIOESMEN: IO port E clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: IO port E clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: IO port E clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t GPIOESMEN : 1;
+	/*
+	*	Bit 5 GPIOFSMEN: IO port F clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: IO port F clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: IO port F clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t GPIOFSMEN : 1;
+	/*
+	*	Bit 6 GPIOGSMEN: IO port G clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: IO port G clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: IO port G clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t GPIOGSMEN : 1;
+	/*
+	*	Bits 8:7 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 2;
+	/*
+	*	Bit 9 CCMSRAMSMEN: CCM SRAM interface clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: CCM SRAM interface clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: CCM SRAM interface clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t CCMSRAMSMEN : 1;
+	/*
+	*	Bit 10 SRAM2SMEN: SRAM2 interface clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: SRAM2 interface clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: SRAM2 interface clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t SRAM2SMEN : 1;
+	/*
+	*	Bits 12:11 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 2;
+	/*
+	*	Bit 13 ADC12SMEN: ADC12 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: ADC12 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: ADC12 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t ADC12SMEN : 1;
+	/*
+	*	Bit 14 ADC345SMEN: ADC345 clock enable
+	*	Set and cleared by software.
+	*	0: ADC345 clock disabled
+	*	1: ADC345 clock enabled
+	*/
+	volatile uint32_t ADC345SMEN : 1;
+	/*
+	*	Bit 15 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved2 : 1;
+	/*
+	*	Bit 16 DAC1SMEN: DAC1 clock enable
+	*	Set and cleared by software.
+	*	0: DAC1 clock disabled
+	*	1: DAC1 clock enabled during Sleep and Stop modes
+	*/
+	volatile uint32_t DAC1SMEN : 1;
+	/*
+	*	Bit 17 DAC2SMEN: DAC2 clock enable
+	*	Set and cleared by software.
+	*	0: DAC2 clock disabled
+	*	1: DAC2 clock enabled during Sleep and Stop modes
+	*/
+	volatile uint32_t DAC2SMEN : 1;
+	/*
+	*	Bit 18 DAC3SMEN: DAC3 clock enable
+	*	Set and cleared by software.
+	*	0: DAC3 clock disabled
+	*	1: DAC3 clock enabled during Sleep and Stop modes
+	*/
+	volatile uint32_t DAC3SMEN : 1;
+	/*
+	*	Bit 19 DAC4SMEN: DAC4 clock enable
+	*	Set and cleared by software.
+	*	0: DAC4 clock disabled
+	*	1: DAC4 clock enabled during Sleep and Stop modes
+	*/
+	volatile uint32_t DAC4SMEN : 1;
+	/*
+	*	Bits 23:20 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved3 : 4;
+	/*
+	*	Bit 24 AESMEN: AESM clocks enable
+	*	Set and cleared by software.
+	*	0: AESM clocks disabled
+	*	1: AESM clocks enabled
+	*/
+	volatile uint32_t AESMEN : 1;
+	/*
+	*	Bit 25 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved4 : 1;
+	/*
+	*	Bit 26 RNGEN: RNG enable
+	*	Set and cleared by software.
+	*	0: RNG disabled
+	*	1: RNG enabled
+	*/
+	volatile uint32_t RNGEN : 1;
+	/*
+	*	Bits 31:27 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved5 : 5;
+}RCC_AHB2SMENR_t;
+
+/*
+*	AHB3 peripheral clocks enable in Sleep and Stop modes register
+*	(RCC_AHB3SMENR)
+*	Address offset: 0x70
+*	Reset value: 0x0000 0101
+*	Access: no wait state, word, half-word and byte access
+*
+*	(1) This register only configures the clock gating, not the clock source itself. Most of the peripherals are clocked by a single
+*	clock (AHB or APB clock), which is always disabled in Stop mode. In this case setting the bit has no effect in Stop mode
+*/
+typedef struct
+{
+	/*
+	*	Bit 0 FMCSMEN: Flexible static memory controller clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: FSMC clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: FSMC clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t FMCSMEN : 1;
+	/*
+	*	Bits 7:1 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 7;
+	/*
+	*	Bit 8 QSPISMEN: QUADSPI memory interface clock enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: QUADSPI clock disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: QUADSPI clock enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t QSPISMEN : 1;
+	/*
+	*	Bits 31:9 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 23;
+}RCC_AHB3SMENR_t;
+
+/*
+*	APB1 peripheral clocks enable in Sleep and Stop modes register 1
+*	(RCC_APB1SMENR1)
+*	Address: 0x78
+*	Reset value: 0xD2FE CD3F
+*	Access: no wait state, word, half-word and byte access
+*
+*	(1) This register only configures the clock gating, not the clock source itself. Most of the peripherals are clocked by a single
+*	clock (AHB or APB clock), which is always disabled in Stop mode. In this case setting the bit has no effect in Stop mode.
+*/
+typedef struct
+{
+	/*
+	*	Bit 0 TIM2SMEN: TIM2 timer clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: TIM2 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: TIM2 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t TIM2SMEN : 1;
+	/*
+	*	Bit 1 TIM3SMEN: TIM3 timer clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: TIM3 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: TIM3 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t TIM3SMEN : 1;
+	/*
+	*	Bit 2 TIM4SMEN: TIM4 timer clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: TIM4 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: TIM4 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t TIM4SMEN : 1;
+	/*
+	*	Bit 3 TIM5SMEN: TIM5 timer clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: TIM5 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: TIM5 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t TIM5SMEN : 1;
+	/*
+	*	Bit 4 TIM6SMEN: TIM6 timer clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: TIM6 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: TIM6 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t TIM6SMEN : 1;
+	/*
+	*	Bit 5 TIM7SMEN: TIM7 timer clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: TIM7 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: TIM7 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t TIM7SMEN : 1;
+	/*
+	*	Bits 7:6 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 2;
+	/*
+	*	Bit 8 CRSSMEN: CRS timer clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: CRS clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: CRS clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t CRSSMEN : 1;
+	/*
+	*	Bit 9 Reserved, must be kept at reset value
+	*/
+	volatile uint32_t reserved1 : 1;
+	/*
+	*	Bit 10 RTCAPBSMEN: RTC APB clock enable during Sleep and Stop modes
+	*	Set and cleared by software
+	*	0: RTC APB clock disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: RTC APB clock enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t RTCAPBSMEN : 1;
+	/*
+	*	Bit 11 WWDGSMEN: Window watchdog clocks enable during Sleep and Stop modes
+	*	Set and cleared by software. This bit is forced to 1 by hardware when the hardware WWDG
+	*	option is activated.
+	*	0: Window watchdog clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: Window watchdog clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t WWDGSMEN : 1;
+	/*
+	*	Bits 13:12 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved2 : 2;
+	/*
+	*	Bit 14 SPI2SMEN: SPI2 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: SPI2 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: SPI2 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t SPI2SMEN : 1;
+	/*
+	*	Bit 15 SPI3SMEN: SPI3 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: SPI3 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: SPI3 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t SPI3SMEN : 1;
+	/*
+	*	Bit 16 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved3 : 1;
+	/*
+	*	Bit 17 USART2SMEN: USART2 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: USART2 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: USART2 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t USART2SMEN : 1;
+	/*
+	*	Bit 18 USART3SMEN: USART3 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: USART3 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: USART3 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t USART3SMEN : 1;
+	/*
+	*	Bit 19 UART4SMEN: UART4 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: UART4 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: UART4 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t UART4SMEN : 1;
+	/*
+	*	Bit 20 UART5SMEN: UART5 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: UART5 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: UART5 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t UART5SMEN : 1;
+	/*
+	*	Bit 21 I2C1SMEN: I2C1 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: I2C1 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: I2C1 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t I2C1SMEN : 1;
+	/*
+	*	Bit 22 I2C2SMEN: I2C2 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: I2C2 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: I2C2 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t I2C2SMEN : 1;
+	/*
+	*	Bit 23 USBSMEN: USB device clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: USB device clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: USB device clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t USBSMEN : 1;
+	/*
+	*	Bit 24 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved4 : 1;
+	/*
+	*	Bit 25 FDCANSMEN: FDCAN clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: FDCAN clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: FDCAN clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t FDCANSMEN : 1;
+	/*
+	*	Bits 27:26 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved5 : 2;
+	/*
+	*	Bit 28 PWRSMEN: Power interface clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: Power interface clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: Power interface clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t PWRSMEN : 1;
+	/*
+	*	Bit 29 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved6 : 1;
+	/*
+	*	Bit 30 I2C3SMEN: I2C3 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: I2C3 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: I2C3 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t I2C3SMEN : 1;
+	/*
+	*	Bit 31 LPTIM1SMEN: Low power timer 1 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: LPTIM1 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: LPTIM1 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t LPTIM1SMEN : 1;
+}RCC_APB1SMENR1_t;
 
 //RCC AHB2 peripheral clock enable register (RCC_AHB2ENR)
 typedef struct
