@@ -2586,331 +2586,646 @@ typedef struct
 	volatile uint32_t LPTIM1SMEN : 1;
 }RCC_APB1SMENR1_t;
 
-//RCC AHB2 peripheral clock enable register (RCC_AHB2ENR)
+/*
+*	APB1 peripheral clocks enable in Sleep and Stop modes register 2
+*	(RCC_APB1SMENR2)
+*	Address offset: 0x7C
+*	Reset value: 0x0000 0103
+*	Access: no wait state, word, half-word and byte access
+*
+*	(1) This register only configures the clock gating, not the clock source itself. Most of the peripherals are clocked by a single
+*	clock (AHB or APB clock), which is always disabled in Stop mode. In this case setting the bit has no effect in Stop mode.
+*	(2) This register only configures the clock gating, not the clock source itself. Most of the peripherals are clocked by a single
+*	clock (AHB or APB clock), which is always disabled in Stop mode. In this case setting the bit has no effect in Stop mode.
+*	
+*/
 typedef struct
 {
+	/*
+	*	Bit 0 LPUART1SMEN: Low power UART 1 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: LPUART1 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: LPUART1 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t LPUART1SMEN : 1;
+	/*
+	*	Bit 1 I2C4SMEN: I2C4 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software
+	*	0: I2C4 clocks disabled by the clock gating(2) during Sleep and Stop modes
+	*	1: I2C4 clock enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t I2C4SMEN : 1;
+	/*
+	*	Bits 7:2 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 6;
+	/*
+	*	Bit 8 UCPD1SMEN: UCPD1 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: UCPD1 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: UCPD1 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t UCPD1SMEN : 1;
+	/*
+	*	Bits 31:9 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 23;
+}RCC_APB1SMENR2_t;
 
-	volatile uint32_t DCMIEN:1;
-	uint32_t reserved0:3;
-	volatile uint32_t CRYPEN:1;
-	volatile uint32_t HASHEN:1;
-	volatile uint32_t RNGEN:1;
-	volatile uint32_t OTGFSEN:1;
-	uint32_t reserved1:24;
-
-}RCC_AHB2ENR_t;
-
-//RCC AHB3 peripheral clock enable register (RCC_AHB3ENR)
+/*
+*	APB2 peripheral clocks enable in Sleep and Stop modes register
+*	(RCC_APB2SMENR)
+*	Address: 0x80
+*	Reset value: 0x0437 F801
+*	Access: word, half-word and byte access
+*
+*	(1) This register only configures the clock gating, not the clock source itself. Most of the peripherals are clocked by a single
+*	clock (AHB or APB clock), which is always disabled in Stop mode. In this case setting the bit has no effect in Stop mode.
+*/
 typedef struct
 {
+	/*
+	*	Bit 0 SYSCFGSMEN: SYSCFG + COMP + VREFBUF + OPAMP clocks enable during Sleep and
+	*	Stop modes
+	*	Set and cleared by software.
+	*	0: SYSCFG + COMP + VREFBUF + OPAMP clocks disabled by the clock gating(1) during
+	*	Sleep and Stop modes
+	*	1: SYSCFG + COMP + VREFBUF + OPAMP clocks enabled by the clock gating(1) during
+	*	Sleep and Stop modes
+	*/
+	volatile uint32_t SYSCFGSMEN : 1;
+	/*
+	*	Bits 10:1 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 10;
+	/*
+	*	Bit 11 TIM1SMEN: TIM1 timer clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: TIM1 timer clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: TIM1P timer clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t TIM1SMEN : 1;
+	/*
+	*	Bit 12 SPI1SMEN: SPI1 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: SPI1 clocks disabled by the clock gating during(1) Sleep and Stop modes
+	*	1: SPI1 clocks enabled by the clock gating during(1) Sleep and Stop modes
+	*/
+	volatile uint32_t SPI1SMEN : 1;
+	/*
+	*	Bit 13 TIM8SMEN: TIM8 timer clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: TIM8 timer clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: TIM8 timer clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t TIM8SMEN : 1;
+	/*
+	*	Bit 14 USART1SMEN: USART1clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: USART1clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: USART1clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t USART1SMEN : 1;
+	/*
+	*	Bit 15 SPI4SMEN: SPI4 timer clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: SPI4 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: SPI4 clocks enabled by the clock gating(1) during Sleep and Stop mode
+	*/
+	volatile uint32_t SPI4SMEN : 1;
+	/*
+	*	Bit 16 TIM15SMEN: TIM15 timer clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: TIM15 timer clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: TIM15 timer clocks enabled by the clock gating(1) during Sleep and Stop mode
+	*/
+	volatile uint32_t TIM15SMEN : 1;
+	/*
+	*	Bit 17 TIM16SMEN: TIM16 timer clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: TIM16 timer clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: TIM16 timer clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t TIM16SMEN : 1;
+	/*
+	*	Bit 18 TIM17SMEN: TIM17 timer clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: TIM17 timer clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: TIM17 timer clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t TIM17SMEN : 1;
+	/*
+	*	Bit 19 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 1;
+	/*
+	*	Bit 20 TIM20SMEN: TIM20 timer clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: TIM20 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: TIM20 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t TIM20SMEN : 1;
+	/*
+	*	Bit 21 SAI1SMEN: SAI1 clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: SAI1 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: SAI1 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t SAI1SMEN : 1;
+	/*
+	*	Bits 25:22 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved2 : 4;
+	/*
+	*	Bit 26 HRTIM1SMEN: HRTIM1 timer clocks enable during Sleep and Stop modes
+	*	Set and cleared by software.
+	*	0: HRTIM1 clocks disabled by the clock gating(1) during Sleep and Stop modes
+	*	1: HRTIM1 clocks enabled by the clock gating(1) during Sleep and Stop modes
+	*/
+	volatile uint32_t HRTIM1SMEN : 1;
+	/*
+	*	Bits 31:27 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved3 : 5;
+}RCC_APB2SMENR_t;
 
-	volatile uint32_t FMCEN:1;
-	uint32_t reserved0:31;
-
-}RCC_AHB3ENR_t;
-
-//RCC APB1 peripheral clock enable register (RCC_APB1ENR)
+/*
+*	Peripherals independent clock configuration register (RCC_CCIPR)
+*	Address: 0x88
+*	Reset value: 0x0000 0000
+*	Access: no wait states, word, half-word and byte access
+*/
 typedef struct
 {
+	/*
+	*	Bits 1:0 USART1SEL[1:0]: USART1 clock source selection
+	*	This bit is set and cleared by software to select the USART1 clock source.
+	*	00: PCLK selected as USART1 clock
+	*	01: System clock (SYSCLK) selected as USART1 clock
+	*	10: HSI16 clock selected as USART1 clock
+	*	11: LSE clock selected as USART1 clock
+	*/
+	volatile uint32_t USART1SEL : 2;
+	/*
+	*	Bits 3:2 USART2SEL[1:0]: USART2 clock source selection
+	*	This bit is set and cleared by software to select the USART2 clock source.
+	*	00: PCLK selected as USART2 clock
+	*	01: System clock (SYSCLK) selected as USART2 clock
+	*	10: HSI16 clock selected as USART2 clock
+	*	11: LSE clock selected as USART2 clock
+	*/
+	volatile uint32_t USART2SEL : 2;
+	/*
+	*	Bits 5:4 USART3SEL[1:0]: USART3 clock source selection
+	*	This bit is set and cleared by software to select the USART3 clock source.
+	*	00: PCLK selected as USART3 clock
+	*	01: System clock (SYSCLK) selected as USART3 clock
+	*	10: HSI16 clock selected as USART3 clock
+	*	11: LSE clock selected as USART3 clock
+	*/
+	volatile uint32_t USART3SEL : 2;
+	/*
+	*	Bits 7:6 UART4SEL[1:0]: UART4 clock source selection
+	*	This bit is set and cleared by software to select the UART4 clock source.
+	*	00: PCLK selected as UART4 clock
+	*	01: System clock (SYSCLK) selected as UART4 clock
+	*	10: HSI16 clock selected as UART4 clock
+	*	11: LSE clock selected as UART4 clock
+	*/
+	volatile uint32_t UART4SEL : 2;
+	/*
+	*	Bits 9:8 UART5SEL[1:0]: UART5 clock source selection
+	*	These bits are set and cleared by software to select the UART5 clock source.
+	*	00: PCLK selected as UART5 clock
+	*	01: System clock (SYSCLK) selected as UART5 clock
+	*	10: HSI16 clock selected as UART5 clock
+	*	11: LSE clock selected as UART5 clock
+	*/
+	volatile uint32_t UART5SEL : 2;
+	/*
+	*	Bits 11:10 LPUART1SEL[1:0]: LPUART1 clock source selection
+	*	These bits are set and cleared by software to select the LPUART1 clock source.
+	*	00: PCLK selected as LPUART1 clock
+	*	01: System clock (SYSCLK) selected as LPUART1 clock
+	*	10: HSI16 clock selected as LPUART1 clock
+	*	11: LSE clock selected as LPUART1 clock
+	*/
+	volatile uint32_t LPUART1SEL : 2;
+	/*
+	*	Bits 13:12 I2C1SEL[1:0]: I2C1 clock source selection
+	*	These bits are set and cleared by software to select the I2C1 clock source.
+	*	00: PCLK selected as I2C1 clock
+	*	01: System clock (SYSCLK) selected as I2C1 clock
+	*	10: HSI16 clock selected as I2C1 clock
+	*	11: Reserved
+	*/
+	volatile uint32_t I2C1SEL : 2;
+	/*
+	*	Bits 15:14 I2C2SEL[1:0]: I2C2 clock source selection
+	*	These bits are set and cleared by software to select the I2C2 clock source.
+	*	00: PCLK selected as I2C2 clock
+	*	01: System clock (SYSCLK) selected as I2C2 clock
+	*	10: HSI16 clock selected as I2C2 clock
+	*	11: Reserved
+	*/
+	volatile uint32_t I2C2SEL : 2;
+	/*
+	*	Bits 17:16 I2C3SEL[1:0]: I2C3 clock source selection
+	*	These bits are set and cleared by software to select the I2C3 clock source.
+	*	00: PCLK selected as I2C3 clock
+	*	01: System clock (SYSCLK) selected as I2C3 clock
+	*	10: HSI16 clock selected as I2C3 clock
+	*	11: Reserved
+	*/
+	volatile uint32_t I2C3SEL : 2;
+	/*
+	*	Bits 19:18 LPTIM1SEL[1:0]: Low power timer 1 clock source selection
+	*	These bits are set and cleared by software to select the LPTIM1 clock source.
+	*	00: PCLK selected as LPTIM1 clock
+	*	01: LSI clock selected as LPTIM1 clock
+	*	10: HSI16 clock selected as LPTIM1 clock
+	*	11: LSE clock selected as LPTIM1 clock
+	*/
+	volatile uint32_t LPTIM1SEL : 2;
+	/*
+	*	Bits 21:20 SAI1SEL[1:0]: clock source selection
+	*	These bits are set and cleared by software to select the SAI clock source.
+	*	00: System clock selected as SAI clock
+	*	01: PLL “Q” clock selected as SAI clock
+	*	10: Clock provided on I2S_CKIN pin selected as SAI clock
+	*	11: HSI16 clock selected as SAI clock
+	*/
+	volatile uint32_t SAI1SEL : 2;
+	/*
+	*	Bits 23:22 I2S23SEL[1:0]: clock source selection
+	*	These bits are set and cleared by software to select the I2S23 clock source.
+	*	00: System clock selected as I2S23 clock
+	*	01: PLL “Q” clock selected as I2S23 clock
+	*	10: Clock provided on I2S_CKIN pin is selected as I2S23 clock
+	*	11: HSI16 clock selected as I2S23 clock. 
+	*/
+	volatile uint32_t I2S23SEL : 2;
+	/*
+	*	Bits 25:24 FDCANSEL[1:0]: clock source selection
+	*	These bits are set and cleared by software to select the FDCAN clock source.
+	*	00: HSE clock selected as FDCAN clock
+	*	01: PLL “Q” clock selected as FDCAN clock
+	*	10: PCLK clock selected as FDCAN clock
+	*	11: Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t FDCANSEL : 2;
+	/*
+	*	Bits 27:26 CLK48SEL[1:0]: 48 MHz clock source selection
+	*	These bits are set and cleared by software to select the 48 MHz clock source used by USB
+	*	device FS and RNG.
+	*	00: HSI48 clock selected as 48 MHz clock
+	*	01: Reserved
+	*	10: PLL “Q” clock (PLL48M1CLK) selected as 48 MHz clock
+	*	11: Reserved, must be kept at reset value
+	*/
+	volatile uint32_t CLK48SEL : 2;
+	/*
+	*	Bits 29:28 ADC12SEL[1:0]: ADC1/2 clock source selection
+	*	These bits are set and cleared by software to select the clock source used by the ADC
+	*	interface.
+	*	00: No clock selected
+	*	01: PLL “P” clock selected as ADC1/2 clock
+	*	10: System clock selected as ADC1/2 clock
+	*	11: Reserved
+	*/
+	volatile uint32_t ADC12SEL : 2;
+	/*
+	*	Bits 31:30 ADC345SEL[1:0]: ADC3/4/5 clock source selection
+	*	These bits are set and cleared by software to select the clock source used by the ADC345
+	*	interface.
+	*	00: No clock selected
+	*	01: PLL “P” clock selected as ADC345 clock
+	*	10: System clock selected as ADC3/4/5 clock
+	*	11: Reserved.
+	*/
+	volatile uint32_t ADC345SEL : 2;
+}RCC_CCIPR_t;
 
-	volatile uint32_t TIM2EN:1;
-	volatile uint32_t TIM3EN:1;
-	volatile uint32_t TIM4EN:1;
-	volatile uint32_t TIM5EN:1;
-	volatile uint32_t TIM6EN:1;
-	volatile uint32_t TIM7EN:1;
-	volatile uint32_t TIM12EN:1;
-	volatile uint32_t TIM13EN:1;
-	volatile uint32_t TIM14EN:1;
-	uint32_t reserved0:2;
-	volatile uint32_t WWDGEN:1;
-	uint32_t reserved1:2;
-	volatile uint32_t SPI2EN:1;
-	volatile uint32_t SPI3EN:1;
-	uint32_t reserved2:1;
-	volatile uint32_t USART2EN:1;
-	volatile uint32_t USART3EN:1;
-	volatile uint32_t UART4EN:1;
-	volatile uint32_t UART5EN:1;
-	volatile uint32_t I2C1EN:1;
-	volatile uint32_t I2C2EN:1;
-	volatile uint32_t I2C3EN:1;
-	uint32_t reserved3:1;
-	volatile uint32_t CAN1EN:1;
-	volatile uint32_t CAN2EN:1;
-	uint32_t reserved4:1;
-	volatile uint32_t PWREN:1;
-	volatile uint32_t DACEN:1;
-	volatile uint32_t UART7EN:1;
-	volatile uint32_t UART8EN:1;
-
-}RCC_APB1ENR_t;
-
-//RCC APB2 peripheral clock enable register (RCC_APB2ENR)
-typedef struct
+/*
+*	RTC domain control register (RCC_BDCR)
+*	Address offset: 0x90
+*	Reset value: 0x0000 0000
+*	Reset by RTC domain Reset, except LSCOSEL, LSCOEN and BDRST, which are reset only
+*	by RTC domain power-on reset.
+*	Access: 0 ≤ wait state ≤ 3, word, half-word and byte access
+*	Wait states are inserted in case of successive accesses to this register.
+*	@note : The bits of this register are outside the VCORE domain. As a result, after Reset, they are
+*	write-protected and the DBP bit in the Section 6.4.1: Power control register 1 (PWR_CR1)
+*	has to be set before these can be modified. Refer to Section 6.1.3: Battery backup domain
+*	on page 229 for further information. These bits (except LSCOSEL, LSCOEN and BDRST)
+*	are reset only after an RTC domain reset (see Section 7.1.3). Any internal or external reset
+*	does not have any effect on these bits.
+*/
+typedef struct 
 {
-
-	volatile uint32_t TIM1EN:1;
-	volatile uint32_t TIM8EN:1;
-	uint32_t reserved0:2;
-	volatile uint32_t USART1EN:1;
-	volatile uint32_t USART6EN:1;
-	uint32_t reserved1:2;
-	volatile uint32_t ADC1EN:1;
-	volatile uint32_t ADC2EN:1;
-	volatile uint32_t ADC3EN:1;
-	volatile uint32_t SDIOEN:1;
-	volatile uint32_t SPI1EN:1;
-	volatile uint32_t SPI4EN:1;
-	volatile uint32_t SYSCFGEN:1;
-	uint32_t reserved3:1;
-	volatile uint32_t TIM9EN:1;
-	volatile uint32_t TIM10EN:1;
-	volatile uint32_t TIM11EN:1;
-	uint32_t reserved4:1;
-	volatile uint32_t SPI5EN:1;
-	volatile uint32_t SPI6EN:1;
-	volatile uint32_t SAI1EN:1;
-	uint32_t reserved5:3;
-	volatile uint32_t LTDCEN:1;
-	uint32_t reserved6:5;
-
-}RCC_APB2ENR_t;
-
-//RCC AHB1 peripheral clock enable in low power mode register (RCC_AHB1LPENR)
-typedef struct
-{
-
-	volatile uint32_t GPIOALPEN:1;
-	volatile uint32_t GPIOBLPEN:1;
-	volatile uint32_t GPIOCLPEN:1;
-	volatile uint32_t GPIODLPEN:1;
-	volatile uint32_t GPIOELPEN:1;
-	volatile uint32_t GPIOFLPEN:1;
-	volatile uint32_t GPIOGLPEN:1;
-	volatile uint32_t GPIOHLPEN:1;
-	volatile uint32_t GPIOILPEN:1;
-	volatile uint32_t GPIOJLPEN:1;
-	volatile uint32_t GPIOKLPEN:1;
-	uint32_t reserved0:1;
-	volatile uint32_t CRCLPEN:1;
-	uint32_t reserved1:2;
-	volatile uint32_t FLITFLPEN:1;
-	volatile uint32_t SRAM1LPEN:1;
-	volatile uint32_t SRAM2LPEN:1;
-	volatile uint32_t BKPSRAMLPEN:1;
-	volatile uint32_t SRAM3LPEN:1;
-	uint32_t reserved2:1;
-	volatile uint32_t DMA1LPEN:1;
-	volatile uint32_t DMA2LPEN:1;
-	volatile uint32_t DMA2DLPEN:1;
-	uint32_t reserved3:1;
-	volatile uint32_t ETHMACLPEN:1;
-	volatile uint32_t ETHTXLPEN:1;
-	volatile uint32_t ETHRXLPEN:1;
-	volatile uint32_t ETHPTPLPEN:1;
-	volatile uint32_t OTGHSLPEN:1;
-	volatile uint32_t OTGHSULPILPEN:1;
-	uint32_t reserved4:1;
-
-}RCC_AHB1LPENR_t;
-
-//RCC AHB2 peripheral clock enable in low power mode register (RCC_AHB2LPENR)
-typedef struct
-{
-
-	volatile uint32_t DCMILPEN:1;
-	uint32_t reserved0:3;
-	volatile uint32_t CRYPLPEN:1;
-	volatile uint32_t HASHLPEN:1;
-	volatile uint32_t RNGLPEN:1;
-	volatile uint32_t OTGFSLPEN:1;
-	uint32_t reserved1:24;
-
-}RCC_AHB2LPENR_t;
-
-//RCC AHB3 peripheral clock enable in low power mode register (RCC_AHB3LPENR)
-typedef struct
-{
-
-	volatile uint32_t FMCLPEN:1;
-	uint32_t reserved0:31;
-
-}RCC_AHB3LPENR_t;
-
-//RCC APB1 peripheral clock enable in low power mode register (RCC_APB1LPENR)
-typedef struct
-{
-
-	volatile uint32_t TIM2LPEN:1;
-	volatile uint32_t TIM3LPEN:1;
-	volatile uint32_t TIM4LPEN:1;
-	volatile uint32_t TIM5LPEN:1;
-	volatile uint32_t TIM6LPEN:1;
-	volatile uint32_t TIM7LPEN:1;
-	volatile uint32_t TIM12LPEN:1;
-	volatile uint32_t TIM13LPEN:1;
-	volatile uint32_t TIM14LPEN:1;
-	uint32_t reserved0:2;
-	volatile uint32_t WWDGLPEN:1;
-	uint32_t reserved1:2;
-	volatile uint32_t SPI2LPEN:1;
-	volatile uint32_t SPI3LPEN:1;
-	uint32_t reserved2:1;
-	volatile uint32_t USART2LPEN:1;
-	volatile uint32_t USART3LPEN:1;
-	volatile uint32_t UART4LPEN:1;
-	volatile uint32_t UART5LPEN:1;
-	volatile uint32_t I2C1LPEN:1;
-	volatile uint32_t I2C2LPEN:1;
-	volatile uint32_t I2C3LPEN:1;
-	uint32_t reserved3:1;
-	volatile uint32_t CAN1LPEN:1;
-	volatile uint32_t CAN2LPEN:1;
-	uint32_t reserved4:1;
-	volatile uint32_t PWRLPEN:1;
-	volatile uint32_t DACLPEN:1;
-	volatile uint32_t UART7LPEN:1;
-	volatile uint32_t UART8LPEN:1;
-
-}RCC_APB1LPENR_t;
-
-//RCC APB2 peripheral clock enable in low power mode register (RCC_APB2LPENR)
-typedef struct
-{
-
-	volatile uint32_t TIM1LPEN:1;
-	volatile uint32_t TIM8LPEN:1;
-	uint32_t reserved0:2;
-	volatile uint32_t USART1LPEN:1;
-	volatile uint32_t USART6LPEN:1;
-	uint32_t reserved1:2;
-	volatile uint32_t ADC1LPEN:1;
-	volatile uint32_t ADC2LPEN:1;
-	volatile uint32_t ADC3LPEN:1;
-	volatile uint32_t SDIOLPEN:1;
-	volatile uint32_t SPI1LPEN:1;
-	volatile uint32_t SPI4LPEN:1;
-	volatile uint32_t SYSCFGLPEN:1;
-	uint32_t reserved3:1;
-	volatile uint32_t TIM9LPEN:1;
-	volatile uint32_t TIM10LPEN:1;
-	volatile uint32_t TIM11LPEN:1;
-	uint32_t reserved4:1;
-	volatile uint32_t SPI5LPEN:1;
-	volatile uint32_t SPI6LPEN:1;
-	volatile uint32_t SAI1LPEN:1;
-	uint32_t reserved5:3;
-	volatile uint32_t LTDCLPEN:1;
-	uint32_t reserved6:5;
-
-}RCC_APB2LPENR_t;
-
-//RCC Backup domain control register (RCC_BDCR)
-typedef struct
-{
-
-	volatile uint32_t LSEON:1;
-	volatile uint32_t LSERDY:1;
-	volatile uint32_t LSEBYP:1;
-	uint32_t reserved0:5;
-	volatile uint32_t RTCSEL:2;
-	uint32_t reserved1:5;
-	volatile uint32_t RTCEN:1;
-	volatile uint32_t BDRST:1;
-	uint32_t reserved3:15;
-
+	/*
+	*	Bit 0 LSEON: LSE oscillator enable
+	*	Set and cleared by software.
+	*	0: LSE oscillator OFF
+	*	1: LSE oscillator ON
+	*/
+	volatile uint32_t LSEON : 1;
+	/*
+	*	Bit 1 LSERDY: LSE oscillator ready
+	*	Set and cleared by hardware to indicate when the external 32 kHz oscillator is stable. After
+	*	the LSEON bit is cleared, LSERDY goes low after 6 external low-speed oscillator clock
+	*	cycles.
+	*	0: LSE oscillator not ready
+	*	1: LSE oscillator ready
+	*/
+	volatile uint32_t LSERDY : 1;
+	/*
+	*	Bit 2 LSEBYP: LSE oscillator bypass
+	*	Set and cleared by software to bypass oscillator in debug mode. This bit can be written only
+	*	when the external 32 kHz oscillator is disabled (LSEON=0 and LSERDY=0).
+	*	0: LSE oscillator not bypassed
+	*	1: LSE oscillator bypassed
+	*/
+	volatile uint32_t LSEBYP : 1;
+	/*
+	*	Bits 4:3 LSEDRV[1:0]: LSE oscillator drive capability
+	*	Set by software to modulate the LSE oscillator’s drive capability.
+	*	00: ‘Xtal mode’ lower driving capability
+	*	01: ‘Xtal mode’ medium low driving capability
+	*	10: ‘Xtal mode’ medium high driving capability
+	*	11: ‘Xtal mode’ higher driving capability
+	*	The oscillator is in Xtal mode when it is not in bypass mode.
+	*/
+	volatile uint32_t LSEDRV : 2;
+	/*
+	*	Bit 5 LSECSSON: CSS on LSE enable
+	*	Set by software to enable the Clock Security System on LSE (32 kHz oscillator).
+	*	LSECSSON must be enabled after the LSE oscillator is enabled (LSEON bit enabled) and
+	*	ready (LSERDY flag set by hardware), and after the RTCSEL bit is selected.
+	*	Once enabled this bit cannot be disabled, except after a LSE failure detection (LSECSSD
+	*	=1). In that case the software MUST disable the LSECSSON bit.
+	*	0: CSS on LSE (32 kHz external oscillator) OFF
+	*	1: CSS on LSE (32 kHz external oscillator) ON
+	*/
+	volatile uint32_t LSECSSON : 1;
+	/*
+	*	Bit 6 LSECSSD: CSS on LSE failure Detection
+	*	Set by hardware to indicate when a failure has been detected by the Clock Security System
+	*	on the external 32 kHz oscillator (LSE).
+	*	0: No failure detected on LSE (32 kHz oscillator)
+	*	1: Failure detected on LSE (32 kHz oscillator)
+	*/
+	volatile uint32_t LSECSSD : 1;
+	/*
+	*	Bit 7 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 1;
+	/*
+	*	Bits 9:8 RTCSEL[1:0]: RTC clock source selection
+	*	Set by software to select the clock source for the RTC. Once the RTC clock source has been
+	*	selected, it cannot be changed anymore unless the RTC domain is reset, or unless a failure
+	*	is detected on LSE (LSECSSD is set). The BDRST bit can be used to reset them.
+	*	00: No clock
+	*	01: LSE oscillator clock used as RTC clock
+	*	10: LSI oscillator clock used as RTC clock
+	*	11: HSE oscillator clock divided by 32 used as RTC clock
+	*/
+	volatile uint32_t RTCSEL : 2;
+	/*
+	*	Bits 14:10 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 5;
+	/*
+	*	Bit 15 RTCEN: RTC clock enable
+	*	Set and cleared by software.
+	*	0: RTC clock disabled
+	*	1: RTC clock enabled
+	*/
+	volatile uint32_t RTCEN : 1;
+	/*
+	*	Bit 16 BDRST: RTC domain software reset
+	*	Set and cleared by software.
+	*	0: Reset not activated
+	*	1: Reset the entire RTC domain
+	*/
+	volatile uint32_t BDRST : 1;
+	/*
+	*	Bits 23:17 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved2 : 7;
+	/*
+	*	Bit 24 LSCOEN: Low speed clock output enable
+	*	Set and cleared by software.
+	*	0: Low speed clock output (LSCO) disable
+	*	1: Low speed clock output (LSCO) enable
+	*/
+	volatile uint32_t LSCOEN : 1;
+	/*
+	*	Bit 25 LSCOSEL: Low speed clock output selection
+	*	Set and cleared by software.
+	*	0: LSI clock selected
+	*	1: LSE clock selected
+	*/
+	volatile uint32_t LSCOSEL : 1;
+	/*
+	*	Bits 31:26 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved3 : 6;
 }RCC_BDCR_t;
 
-//RCC clock control & status register (RCC_CSR)
+/*
+*	Control/status register (RCC_CSR)
+*	Address: 0x94
+*	Reset value: 0x0C00 0000
+*	Reset by system Reset, except reset flags by power Reset only.
+*	Access: 0 ≤ wait state ≤ 3, word, half-word and byte access
+*	Wait states are inserted in case of successive accesses to this register.
+*/
 typedef struct
 {
-
-	volatile uint32_t LSION:1;
-	volatile uint32_t LSIRDY:1;
-	uint32_t reserved0:22;
-	volatile uint32_t RMVF:1;
-	volatile uint32_t BORRSTF:1;
-	volatile uint32_t PINRSTF:1;
-	volatile uint32_t PORRSTF:1;
-	volatile uint32_t SFTRSTF:1;
-	volatile uint32_t IWDGRSTF:1;
-	volatile uint32_t WWDGRSTF:1;
-	volatile uint32_t LPWRRSTF:1;
-
+	/*
+	*	Bit 0 LSION: LSI oscillator enable
+	*	Set and cleared by software.
+	*	0: LSI oscillator OFF
+	*	1: LSI oscillator ON
+	*/
+	volatile uint32_t LSION : 1;
+	/*
+	*	Bit 1 LSIRDY: LSI oscillator ready
+	*	Set and cleared by hardware to indicate when the LSI oscillator is stable. After the LSION bit
+	*	is cleared, LSIRDY goes low after 3 LSI oscillator clock cycles. This bit can be set even if
+	*	LSION = 0 if the LSI is requested by the Clock Security System on LSE, by the Independent
+	*	Watchdog or by the RTC.
+	*	0: LSI oscillator not ready
+	*	1: LSI oscillator ready
+	*/
+	volatile uint32_t LSIRDY : 1;
+	/*
+	*	Bits 22:2 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 21;
+	/*
+	*	Bit 23 RMVF: Remove reset flag
+	*	Set by software to clear the reset flags.
+	*	0: No effect
+	*	1: Clear the reset flags
+	*/
+	volatile uint32_t RMVF : 1;
+	/*
+	*	Bit 24 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 1;
+	/*
+	*	Bit 25 OBLRSTF: Option byte loader reset flag
+	*	Set by hardware when a reset from the Option Byte loading occurs.
+	*	Cleared by writing to the RMVF bit.
+	*	0: No reset from Option Byte loading occurred
+	*	1: Reset from Option Byte loading occurred
+	*/
+	volatile uint32_t OBLRSTF : 1;
+	/*
+	*	Bit 26 PINRSTF: Pin reset flag
+	*	Set by hardware when a reset from the NRST pin occurs.
+	*	Cleared by writing to the RMVF bit.
+	*	0: No reset from NRST pin occurred
+	*	1: Reset from NRST pin occurred
+	*/
+	volatile uint32_t PINRSTF : 1;
+	/*
+	*	Bit 27 BORRSTF: BOR flag
+	*	Set by hardware when a BOR occurs.
+	*	Cleared by writing to the RMVF bit.
+	*	0: No BOR occurred
+	*	1: BOR occurred
+	*/
+	volatile uint32_t BORRSTF : 1;
+	/*
+	*	Bit 28 SFTRSTF: Software reset flag
+	*	Set by hardware when a software reset occurs.
+	*	Cleared by writing to the RMVF bit.
+	*	0: No software reset occurred
+	*	1: Software reset occurred
+	*/
+	volatile uint32_t SFTRSTF : 1;
+	/*
+	*	Bit 29 IWDGRSTF: Independent window watchdog reset flag
+	*	Set by hardware when an independent watchdog reset domain occurs.
+	*	Cleared by writing to the RMVF bit.
+	*	0: No independent watchdog reset occurred
+	*	1: Independent watchdog reset occurred
+	*/
+	volatile uint32_t IWDGRSTF : 1;
+	/*
+	*	Bit 30 WWDGRSTF: Window watchdog reset flag
+	*	Set by hardware when a window watchdog reset occurs.
+	*	Cleared by writing to the RMVF bit.
+	*	0: No window watchdog reset occurred
+	*	1: Window watchdog reset occurred
+	*/
+	volatile uint32_t WWDGRSTF : 1;
+	/*
+	*	Bit 31 LPWRRSTF: Low-power reset flag
+	*	Set by hardware when a reset occurs due to illegal Stop, Standby or Shutdown mode entry.
+	*	Cleared by writing to the RMVF bit.
+	*	0: No illegal mode reset occurred
+	*	1: Illegal mode reset occurred
+	*/
+	volatile uint32_t LPWRRSTF : 1;
 }RCC_CSR_t;
 
-//RCC spread spectrum clock generation register (RCC_SSCGR)
-
+/*
+*	Clock recovery RC register (RCC_CRRCR)
+*	Address: 0x98
+*	Reset value: 0x0000 XXX0
+*	Where X is factory-programmed.
+*	Access: no wait state, word, half-word and byte access
+*/
 typedef struct
 {
+	/*
+	*	Bit 0 HSI48ON: HSI48 clock enable
+	*	Set and cleared by software.
+	*	Cleared by hardware to stop the HSI48 when entering in Stop, Standby or Shutdown modes.
+	*	0: HSI48 oscillator OFF
+	*	1: HSI48 oscillator ON
+	*/
+	volatile uint32_t HSI48ON : 1;
+	/*
+	*	Bit 1 HSI48RDY: HSI48 clock ready flag
+	*	Set by hardware to indicate that HSI48 oscillator is stable. This bit is set only when HSI48 is
+	*	enabled by software by setting HSI48ON.
+	*	0: HSI48 oscillator not ready
+	*	1: HSI48 oscillator ready
+	*/
+	volatile uint32_t HSI48RDY : 1;
+	/*
+	*	Bits 6:2 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 5;
+	/*
+	*	Bits 15:7 HSI48CAL[8:0]: HSI48 clock calibration
+	*	These bits are initialized at startup with the factory-programmed HSI48 calibration trim value.
+	*	They are ready only.
+	*/
+	volatile uint32_t HSI48CAL : 9;
+}RCC_CRRCR_t;
 
-	volatile uint32_t MODPER:13;
-	volatile uint32_t INCSTEP:15;
-	uint32_t reserved0:2;
-	volatile uint32_t SPREADSEL:1;
-	volatile uint32_t SSCGEN:1;
-
-}RCC_SSCGR_t;
-
-//RCC clock control & status register (RCC_PLLI2SCFGR)
+/*
+*	Peripherals independent clock configuration register (RCC_CCIPR2)
+*	Address: 0x9C
+*	Reset value: 0x0000 0000
+*	Access: no wait state, word, half-word and byte access
+*	Wait states are inserted in case of successive accesses to this register.
+*/
 typedef struct
 {
+	/*
+	*	Bits 1:0 I2C4SEL[1:0]: I2C4 clock source selection
+	*	These bits are set and cleared by software to select the I2C4 clock source.
+	*	00: PCLK selected as I2C4 clock
+	*	01: System clock (SYSCLK) selected as I2C4 clock
+	*	10: HSI16 clock selected as I2C4 clock
+	*	11: reserved
+	*/
+	volatile uint32_t I2C4SEL : 2;
+	/*
+	*	Bits 19:2 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved0 : 18;
+	/*
+	*	Bits 21:20 QSPISEL[1:0]: QUADSPI clock source selection
+	*	Set and reset by software.
+	*	00: system clock selected as QUADSPI kernel clock
+	*	01: HSI16 clock selected as QUADSPI kernel clock
+	*	10: PLL “Q” clock selected as QUADSPI kernel clock
+	*	11: reserved
+	*/
+	volatile uint32_t QSPISEL : 2;
+	/*
+	*	Bits 31:22 Reserved, must be kept at reset value.
+	*/
+	volatile uint32_t reserved1 : 10;
+}RCC_CCIPR2_t;
 
-	uint32_t reserved0:6;
-	volatile uint32_t PLLI2SN:9;
-	uint32_t reserved1:9;
-	volatile uint32_t PLLI2SQ:4;
-	volatile uint32_t PLLI2SR:3;
-	uint32_t reserved2:1;
-
-}RCC_PLLI2SCFGR_t;
-
-//RCC PLL configuration register (RCC_PLLSAICFGR)
-typedef struct
-{
-
-	uint32_t reserved0:6;
-	volatile uint32_t PLLSAIN:9;
-	uint32_t reserved1:9;
-	volatile uint32_t PLLSAIQ:4;
-	volatile uint32_t PLLSAIR:3;
-	uint32_t reserved2:1;
-
-}RCC_PLLSAICFGR_t;
-
-//RCC Dedicated Clock Configuration Register (RCC_DCKCFGR)
-typedef struct
-{
-
-	volatile uint32_t PLLS2DIVQ:5;
-	uint32_t reserved0:3;
-	volatile uint32_t PLLSAIDIVQ:5;
-	uint32_t reserved1:3;
-	volatile uint32_t PLLSAIDIVR:2;
-	uint32_t reserved2:2;
-	volatile uint32_t SAI1ASRC:2;
-	volatile uint32_t SAI1BSRC:2;
-	volatile uint32_t TIMPRE:1;
-	uint32_t reserved3:7;
-
-}RCC_DCKCFGR_t;
 
 //Whole RCC registers.
 typedef struct
 {
 
 	volatile RCC_CR_t CR;
+	volatile RCC_ICSCR_t ICSCR;
+	volatile RCC_CFGR_t CFGR;
 	volatile RCC_PLLCFGR_t PLLCFGR;
+
 	volatile RCC_CFGR_t CFGR;
 	volatile RCC_CIR_t CIR;
 	volatile RCC_AHB1RSTR_t AHB1RSTR;
 	volatile RCC_AHB2RSTR_t AHB2RSTR;
 	volatile RCC_AHB3RSTR_t AHB3RSTR;
-	uint32_t reserved0;
+	volatile uint32_t reserved0;
 	volatile RCC_APB1RSTR_t APB1RSTR;
 	volatile RCC_APB2RSTR_t APB2RSTR;
-	uint32_t reserved1[2];
+	volatile uint32_t reserved1[2];
 	volatile RCC_AHB1ENR_t AHB1ENR;
 	volatile RCC_AHB2ENR_t AHB2ENR;
 	volatile RCC_AHB3ENR_t AHB3ENR;
